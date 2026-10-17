@@ -1,0 +1,1 @@
+["temperature", "humidity", "co2", "pm25", "pm10", "tvoc", "co", "light", "motion", "occupancy", "ventilation_enc", "hour", "day_of_week", "is_working_hours"]

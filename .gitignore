@@ -1,0 +1,45 @@
+# Node / Frontend
+node_modules/
+dist/
+build/
+.npm/
+.pnp
+.pnp.js
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Python / Backend
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyc
+*.pyo
+*.egg-info/
+dist/
+.eggs/
+venv/
+env/
+.venv/
+*.env
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# OS Files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# Model / large binary files (optional — comment out if you want to include)
+# *.pkl
+# *.h5
+# *.joblib
