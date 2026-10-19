@@ -147,7 +147,7 @@ export default function AppLayout() {
             </div>
             <div className="system-info-row">
               <span className="info-text">
-                Dataset: {dataset?.rows ? `${dataset.rows.toLocaleString()} records` : "97,458 records"}
+                Dataset: {dataset?.rows ? `${dataset.rows.toLocaleString()} records` : (connected ? "Loading..." : "Offline")}
               </span>
             </div>
             <div className="system-updated-block">
@@ -162,21 +162,27 @@ export default function AppLayout() {
         <header className="topbar">
           <div className="topbar-titles">
             <h1 className="header-title">{headerTitle}</h1>
-            <p className="header-tagline">{headerTagline}</p>
+            {isOverview && (
+              <p className="header-tagline">
+                Explore your environment, understand the air, and take informed action.
+              </p>
+            )}
           </div>
           <div className="topbar-actions">
-            <div
-              className="view-selector-pill"
-              tabIndex={0}
-              role="button"
-              aria-label="Select view mode"
-            >
-              <span className="view-label">View</span>
-              <div className="view-val-row">
-                <span className="view-val">3D Room</span>
-                <ChevronDown size={14} className="view-chevron" />
+            {isOverview && (
+              <div
+                className="view-selector-pill"
+                tabIndex={0}
+                role="button"
+                aria-label="Select view mode"
+              >
+                <span className="view-label">View</span>
+                <div className="view-val-row">
+                  <span className="view-val">3D Room</span>
+                  <ChevronDown size={14} className="view-chevron" />
+                </div>
               </div>
-            </div>
+            )}
             <div className="datetime-card">
               <span className="datetime-date font-mono">{dateStr}</span>
               <span className="datetime-time font-mono">{timeStr}</span>

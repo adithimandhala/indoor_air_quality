@@ -1,4 +1,4 @@
-/* Overview Page Layout (Requirement 5) */
+/* Overview Page Layout (Requirement: 100vh grid, 470px right column) */
 .overview-layout {
   display: grid;
   grid-template-columns: 1fr 470px;
@@ -10,71 +10,92 @@
   min-height: 0;
 }
 
-/* 5. Center Area: Placeholder div for the 3D room (to be built next) */
+/* PART B: 3D ROOM (center, fills the area, soft edge fade, no card border) */
 .room-center-area {
   position: relative;
-  background: var(--panels);
-  border: var(--panel-border);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  border-radius: var(--panel-radius);
   overflow: hidden;
   display: flex;
   flex-direction: column;
   min-width: 0;
   height: 100%;
-  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.45);
 }
 
-.room-viewport-scene {
+.room-3d-seamless {
+  border: none !important;
+  background: radial-gradient(circle at 48% 46%, #0b2230 0%, #050c16 80%);
+  border-radius: 0;
+}
+
+/* Soft edge fade vignette overlay */
+.room-edge-fade-overlay {
   position: absolute;
   inset: 0;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
+  pointer-events: none;
+  background: radial-gradient(
+    ellipse at center,
+    transparent 62%,
+    rgba(5, 12, 22, 0.4) 80%,
+    #050c16 100%
+  );
+  z-index: 2;
 }
 
-.room-bg-svg {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-
-/* Floating Room Sensor Callout Badges */
-.room-marker-badge {
+/* Caption: "Sensor positions and airflow are illustrative, not measured." */
+.room-caption-tag {
   position: absolute;
+  bottom: 22px;
+  left: 24px;
+  z-index: 5;
+  font-size: 10px;
+  color: var(--muted);
+  background: rgba(8, 24, 40, 0.65);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(46, 230, 214, 0.12);
+  border-radius: 8px;
+  padding: 4px 10px;
+  pointer-events: none;
+}
+
+/* 3D Drei Html Sensor Marker Cards (Dark Glass) */
+.three-marker-card {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
   background: rgba(8, 24, 40, 0.88);
   border: 1px solid rgba(46, 230, 214, 0.28);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border-radius: 12px;
-  padding: 8px 12px;
+  padding: 6px 12px;
   color: var(--text);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5), 0 0 15px rgba(46, 230, 214, 0.12);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5), 0 0 12px rgba(46, 230, 214, 0.1);
   cursor: pointer;
-  transition: all 0.2s ease;
-  z-index: 5;
+  transition: all 0.22s ease;
   user-select: none;
+  white-space: nowrap;
 }
 
-.room-marker-badge:hover,
-.room-marker-badge.selected {
+.three-marker-card:hover {
   border-color: var(--cyan);
   background: rgba(12, 34, 54, 0.95);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6), 0 0 20px rgba(46, 230, 214, 0.35);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6), 0 0 16px rgba(46, 230, 214, 0.3);
   transform: translateY(-2px);
 }
 
-.marker-icon-box {
-  width: 30px;
-  height: 30px;
-  border-radius: 8px;
+/* The selected card glows cyan */
+.three-marker-card.selected-glow {
+  border-color: var(--cyan);
+  background: rgba(12, 36, 56, 0.96);
+  box-shadow: 0 0 20px rgba(46, 230, 214, 0.45), inset 0 0 10px rgba(46, 230, 214, 0.2);
+  transform: scale(1.05);
+}
+
+.three-marker-icon {
+  width: 26px;
+  height: 26px;
+  border-radius: 7px;
   background: rgba(46, 230, 214, 0.12);
-  border: 1px solid rgba(46, 230, 214, 0.3);
+  border: 1px solid rgba(46, 230, 214, 0.25);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -82,54 +103,55 @@
   flex-shrink: 0;
 }
 
-.marker-info {
+.three-marker-details {
   display: flex;
   flex-direction: column;
   gap: 1px;
+  text-align: left;
 }
 
-.marker-label {
-  font-size: 10px;
+.three-marker-name {
+  font-size: 9.5px;
   color: var(--muted);
   font-weight: 500;
 }
 
-.marker-val-row {
-  display: flex;
-  align-items: baseline;
-  gap: 4px;
-}
-
-.marker-val {
+.three-marker-val {
   font-family: var(--font-mono);
-  font-size: 13px;
+  font-size: 12.5px;
   font-weight: 700;
   color: var(--text);
 }
 
-.marker-status-dot {
-  width: 6px;
-  height: 6px;
+.three-marker-dot {
+  width: 7px;
+  height: 7px;
   border-radius: 50%;
-  margin-top: 2px;
+  flex-shrink: 0;
+  margin-left: 2px;
 }
 
-.marker-status-dot.cyan {
+.three-marker-dot.cyan {
   background-color: var(--cyan);
-  box-shadow: 0 0 6px rgba(46, 230, 214, 0.6);
+  box-shadow: 0 0 8px rgba(46, 230, 214, 0.7);
 }
 
-.marker-status-dot.amber {
+.three-marker-dot.amber {
   background-color: var(--amber);
-  box-shadow: 0 0 6px rgba(255, 179, 71, 0.6);
+  box-shadow: 0 0 8px rgba(255, 179, 71, 0.7);
 }
 
-.marker-status-dot.red {
+.three-marker-dot.red {
   background-color: var(--red);
-  box-shadow: 0 0 6px rgba(255, 107, 91, 0.6);
+  box-shadow: 0 0 8px rgba(255, 107, 91, 0.7);
 }
 
-/* Floating Camera Toolbar at Bottom Center */
+.three-marker-dot.blue {
+  background-color: #86aedd;
+  box-shadow: 0 0 8px rgba(134, 174, 221, 0.7);
+}
+
+/* Bottom-Center Glass Control Bar */
 .camera-controls-bar {
   position: absolute;
   bottom: 20px;
@@ -181,7 +203,140 @@
   font-weight: 600;
 }
 
-/* 5. Right Column Placeholder: 470px wide */
+/* 3D Loading Skeleton */
+.room-3d-skeleton {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  background: radial-gradient(circle at center, #0b2230 0%, #050c16 80%);
+  color: var(--muted);
+  font-size: 13px;
+  z-index: 2;
+}
+
+.skeleton-pulse-ring {
+  width: 48px;
+  height: 48px;
+  border: 2px solid rgba(46, 230, 214, 0.2);
+  border-top-color: var(--cyan);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* WebGL Fallback container */
+.webgl-fallback-container {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  height: 100%;
+  overflow-y: auto;
+  box-sizing: border-box;
+}
+
+.fallback-header strong {
+  font-size: 15px;
+  color: var(--text);
+  display: block;
+  margin-bottom: 4px;
+}
+
+.fallback-header p {
+  margin: 0;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.fallback-sensor-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 12px;
+}
+
+.fallback-sensor-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--panels);
+  border: var(--panel-border);
+  backdrop-filter: blur(14px);
+  border-radius: 14px;
+  padding: 12px 14px;
+  color: var(--text);
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.16s ease;
+}
+
+.fallback-sensor-card:hover,
+.fallback-sensor-card.active {
+  border-color: var(--cyan);
+  background: rgba(12, 34, 54, 0.9);
+}
+
+.fallback-card-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: rgba(46, 230, 214, 0.12);
+  color: var(--cyan);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.fallback-card-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+  flex: 1;
+}
+
+.fallback-card-title {
+  font-size: 11px;
+  color: var(--muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.fallback-card-val {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.fallback-card-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.fallback-card-dot.cyan {
+  background: var(--cyan);
+}
+.fallback-card-dot.amber {
+  background: var(--amber);
+}
+.fallback-card-dot.red {
+  background: var(--red);
+}
+
+/* PART A: RIGHT COLUMN (470px wide, three stacked glass cards) */
 .overview-right-column {
   width: 470px;
   min-width: 470px;
@@ -195,7 +350,46 @@
   padding-right: 2px;
 }
 
-/* Right Rail Cards */
+/* Inline Card Error Banner with Retry */
+.card-error-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  background: rgba(255, 107, 91, 0.1);
+  border: 1px solid rgba(255, 107, 91, 0.35);
+  border-radius: 12px;
+  padding: 10px 14px;
+  color: #ffb4ac;
+  font-size: 12px;
+}
+
+.error-text-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.retry-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: rgba(255, 107, 91, 0.2);
+  border: 1px solid rgba(255, 107, 91, 0.4);
+  border-radius: 6px;
+  color: #fff;
+  padding: 4px 10px;
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.16s ease;
+}
+
+.retry-btn:hover {
+  background: rgba(255, 107, 91, 0.35);
+}
+
+/* Stacked Glass Rail Cards */
 .rail-card {
   background: var(--panels);
   border: var(--panel-border);
@@ -230,6 +424,13 @@
   letter-spacing: -0.01em;
 }
 
+/* Info Tooltip Popover */
+.tooltip-container {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
 .info-icon-btn {
   background: transparent;
   border: none;
@@ -244,6 +445,34 @@
   color: var(--cyan);
 }
 
+.tooltip-popover {
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(8, 24, 40, 0.95);
+  border: 1px solid rgba(46, 230, 214, 0.3);
+  backdrop-filter: blur(12px);
+  border-radius: 8px;
+  padding: 6px 12px;
+  font-size: 10.5px;
+  color: var(--text);
+  line-height: 1.4;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.18s ease;
+  z-index: 20;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+}
+
+.tooltip-container:hover .tooltip-popover,
+.tooltip-container:focus-within .tooltip-popover {
+  opacity: 1;
+  visibility: visible;
+}
+
 .proxy-pill {
   font-size: 10px;
   font-weight: 600;
@@ -255,32 +484,36 @@
   white-space: nowrap;
 }
 
-/* Card 1: Indoor Air Quality Gauge */
+/* Card 1: Indoor Air Quality Semicircle Gauge */
 .gauge-content-row {
   display: flex;
   align-items: center;
-  gap: 22px;
+  gap: 20px;
   margin-top: 4px;
 }
 
 .gauge-svg-wrap {
   position: relative;
   width: 130px;
-  height: 130px;
+  height: 95px;
   flex-shrink: 0;
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   justify-content: center;
 }
 
 .gauge-svg-element {
   width: 100%;
   height: 100%;
+  overflow: visible;
+}
+
+.semicircle-text {
+  bottom: 8px;
 }
 
 .gauge-text-overlay {
   position: absolute;
-  inset: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -290,22 +523,22 @@
 
 .gauge-number {
   font-family: var(--font-mono);
-  font-size: 30px;
+  font-size: 27px;
   font-weight: 700;
   color: var(--text);
   line-height: 1;
 }
 
 .gauge-pts {
-  font-size: 11px;
+  font-size: 10.5px;
   color: var(--muted);
-  margin-top: 4px;
+  margin-top: 3px;
 }
 
 .gauge-meta-block {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 3px;
   min-width: 0;
 }
 
@@ -338,7 +571,7 @@
 }
 
 .status-explanation {
-  margin: 4px 0 0 0;
+  margin: 3px 0 0 0;
   font-size: 11.5px;
   color: var(--muted);
   line-height: 1.5;
@@ -354,7 +587,7 @@
   font-size: 11px;
   padding: 4px 8px;
   cursor: pointer;
-  max-width: 200px;
+  max-width: 210px;
 }
 
 .selected-sensor-row {
@@ -408,16 +641,20 @@
   white-space: nowrap;
 }
 
-.sensor-state-pill.elevated {
+.sensor-state-pill.amber {
   color: var(--amber);
 }
 
-.sensor-state-pill.urgent {
+.sensor-state-pill.red {
   color: var(--red);
 }
 
-.sensor-state-pill.normal {
+.sensor-state-pill.cyan {
   color: var(--cyan);
+}
+
+.sensor-state-pill.blue {
+  color: #86aedd;
 }
 
 .about-reading-block {
@@ -441,61 +678,101 @@
   line-height: 1.5;
 }
 
-/* Card 3: Recent Trends */
+/* Card 3: Recent Trends (Recharts) */
+.history-source-badge {
+  font-size: 10px;
+  color: var(--muted);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(46, 230, 214, 0.15);
+  border-radius: 6px;
+  padding: 3px 8px;
+}
+
 .trends-chart-container {
   display: flex;
   flex-direction: column;
   gap: 4px;
   margin-top: 4px;
+  min-height: 135px;
 }
 
-.trends-chart-svg-box {
-  position: relative;
-  width: 100%;
-  height: 120px;
+.chart-empty-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 135px;
+  font-size: 11.5px;
+  color: var(--muted);
 }
 
-.trend-svg-chart {
-  width: 100%;
-  height: 100%;
-  overflow: visible;
-}
-
-.trend-callout-pill {
-  position: absolute;
-  top: 14px;
-  right: 28px;
+.recharts-custom-tooltip {
   background: rgba(8, 24, 40, 0.95);
   border: 1px solid rgba(46, 230, 214, 0.3);
-  backdrop-filter: blur(8px);
+  backdrop-filter: blur(10px);
   border-radius: 8px;
-  padding: 4px 10px;
+  padding: 6px 12px;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
-  pointer-events: none;
+  gap: 2px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.5);
 }
 
-.callout-val {
-  font-family: var(--font-mono);
-  font-size: 11px;
+.tooltip-value {
+  font-size: 12px;
   font-weight: 700;
   color: var(--text);
 }
 
-.callout-time {
-  font-family: var(--font-mono);
-  font-size: 9px;
+.tooltip-time {
+  font-size: 10px;
   color: var(--muted);
 }
 
-.trend-x-axis-row {
+/* Skeletons */
+.card-skeleton-row {
   display: flex;
-  justify-content: space-between;
-  padding-left: 28px;
-  padding-right: 6px;
-  font-family: var(--font-mono);
-  font-size: 9px;
-  color: var(--muted);
+  align-items: center;
+  gap: 16px;
+  padding: 10px 0;
+}
+
+.skeleton-gauge-circle {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: rgba(46, 230, 214, 0.06);
+  animation: pulse-skeleton 1.5s ease-in-out infinite;
+}
+
+.skeleton-lines {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.skeleton-line {
+  height: 10px;
+  border-radius: 4px;
+  background: rgba(46, 230, 214, 0.06);
+  animation: pulse-skeleton 1.5s ease-in-out infinite;
+}
+
+.skeleton-line.w-half {
+  width: 50%;
+}
+.skeleton-line.w-full {
+  width: 100%;
+}
+.skeleton-line.w-three-quarters {
+  width: 75%;
+}
+
+@keyframes pulse-skeleton {
+  0%, 100% {
+    opacity: 0.4;
+  }
+  50% {
+    opacity: 0.8;
+  }
 }

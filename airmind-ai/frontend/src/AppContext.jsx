@@ -31,8 +31,12 @@ export function AppProvider({ children }) {
   const [historyRecords, setHistoryRecords] = useState([]);
   const [prediction, setPrediction] = useState(null);
   const [scenarios, setScenarios] = useState(null);
+  const [selectedSensorId, setSelectedSensorId] = useState("co2");
+  const [retryCount, setRetryCount] = useState(0);
   const [requestState, setRequestState] = useState("loading");
   const [error, setError] = useState("");
+
+  const retry = () => setRetryCount((c) => c + 1);
 
   useEffect(() => {
     let active = true;
@@ -50,8 +54,8 @@ export function AppProvider({ children }) {
       if (!active) return;
       setDataset(datasetInfo);
       setModelInfo(model);
-      const offset = Math.max(0, datasetInfo.rows - 300);
-      const firstDay = datasetInfo.timestamp_start?.slice(0, 10);
+      const offset = Math.max(0, (datasetInfo?.rows || 1000) - 300);
+      const firstDay = datasetInfo?.timestamp_start?.slice(0, 10);
       return Promise.all([
         api(`/records?limit=300&offset=${offset}`),
         firstDay ? api(`/analytics/summary?start=${firstDay}T00:00:00&end=${firstDay}T23:59:59`) : Promise.resolve(null),
@@ -60,12 +64,16 @@ export function AppProvider({ children }) {
       if (!active) return;
       if (result) setHistoryRecords(result.records || []);
       if (summary?.screening_thresholds) setScreeningThresholds(summary.screening_thresholds);
-    }).catch(() => {});
+    }).catch((err) => {
+      if (active) {
+        setError(err.message || "Can't reach the AirMind backend.");
+      }
+    });
     return () => {
       active = false;
       window.clearInterval(timer);
     };
-  }, []);
+  }, [retryCount]);
 
   useEffect(() => {
     let active = true;
@@ -94,12 +102,18 @@ export function AppProvider({ children }) {
       active = false;
       window.clearTimeout(timer);
     };
-  }, [params, dataSource]);
+  }, [params, dataSource, retryCount]);
 
   const updateParam = (name, value) => {
     setDataSource("simulated");
     setSelectedTimestamp(null);
     setParams((current) => ({ ...current, [name]: value }));
+  };
+
+  const resetToInitial = () => {
+    setParams(initialParams);
+    setDataSource("simulated");
+    setSelectedTimestamp(null);
   };
 
   const selectHistoricalRecord = (record) => {
@@ -114,10 +128,21 @@ export function AppProvider({ children }) {
     setSelectedTimestamp(record.timestamp || null);
   };
 
+  const loadRandomRecord = async () => {
+    try {
+      const rec = await api("/records/random");
+      selectHistoricalRecord(rec);
+    } catch (err) {
+      setError(err.message);
+    }
+  };
+
   return (
     <AppContext.Provider value={{
-      params, setParams, updateParam, dataSource, setDataSource, selectedTimestamp, setSelectedTimestamp, selectHistoricalRecord,
+      params, setParams, updateParam, resetToInitial, dataSource, setDataSource, selectedTimestamp, setSelectedTimestamp,
+      selectHistoricalRecord, loadRandomRecord,
       health, dataset, screeningThresholds, modelInfo, historyRecords, prediction, scenarios, requestState, error,
+      selectedSensorId, setSelectedSensorId, retry,
     }}>
       {children}
     </AppContext.Provider>

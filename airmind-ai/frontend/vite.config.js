@@ -7,7 +7,7 @@ export default defineConfig({
   resolve: {
     preserveSymlinks: true,
   },
-  server: { host: true },
+  server: { host: true, port: 5173, strictPort: true },
   build: {
     rollupOptions: {
       output: {

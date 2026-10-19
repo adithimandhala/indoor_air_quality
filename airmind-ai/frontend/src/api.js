@@ -1,4 +1,8 @@
-export const API_BASE = (import.meta.env.VITE_API_BASE_URL || "http://127.0.0.1:8000").replace(/\/$/, "");
+export const API_BASE = (
+  import.meta.env.VITE_API_URL ||
+  import.meta.env.VITE_API_BASE_URL ||
+  "http://127.0.0.1:8000"
+).replace(/\/$/, "");
 
 export async function api(path, options = {}) {
   const controller = new AbortController();
@@ -17,6 +21,9 @@ export async function api(path, options = {}) {
     return contentType.includes("application/json") ? response.json() : response;
   } catch (error) {
     if (error.name === "AbortError") throw new Error("The API request timed out.");
+    if (error instanceof TypeError || (error.message && error.message.toLowerCase().includes("fetch"))) {
+      throw new Error(`Can't reach the AirMind backend. Make sure it is running on ${API_BASE}.`);
+    }
     throw error;
   } finally {
     window.clearTimeout(timeout);

@@ -30,8 +30,14 @@ from ml_pipeline import COLUMN_MAP, DATASET_PATH, FEATURES, MODEL_DIR, calculate
 
 app = FastAPI(title="AirMind AI API", version="2.0.0")
 origins = os.getenv("CORS_ORIGINS", "http://localhost:5173,http://127.0.0.1:5173")
-app.add_middleware(CORSMiddleware, allow_origins=[v.strip() for v in origins.split(",") if v.strip()],
-                   allow_credentials=True, allow_methods=["GET", "POST"], allow_headers=["Content-Type", "Authorization"])
+app.add_middleware(
+    CORSMiddleware,
+    allow_origin_regex=r"^https?://(localhost|127\.0\.0\.1)(:\d+)?$",
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 MODEL_PATH = MODEL_DIR / "random_forest_model.joblib"
 MODEL = joblib.load(MODEL_PATH) if MODEL_PATH.exists() else None
@@ -304,6 +310,52 @@ def optimize(params: RoomParams) -> dict[str, Any]:
             "notice": "Scenario outputs are model simulations under stated assumptions; they are not measured outcomes or guaranteed benefits."}
 
 
+@app.get("/records/random")
+def records_random() -> dict[str, Any]:
+    frame = _raw_dataset()
+    clean = frame.dropna(subset=["pm25", "co2", "tvoc", "co", "temperature", "humidity", "occupancy"])
+    if clean.empty:
+        clean = frame
+    row = clean.sample(n=1, random_state=None).iloc[0]
+    return _record(row)
+
+
+@app.get("/features/ranges")
+def features_ranges() -> dict[str, Any]:
+    frame = _raw_dataset()
+    result: dict[str, Any] = {}
+    for name in FEATURES:
+        series = frame[name].dropna() if name in frame.columns else pd.Series([])
+        f_min = float(series.min()) if not series.empty else 0.0
+        f_max = float(series.max()) if not series.empty else 100.0
+        f_mean = float(series.mean()) if not series.empty else 0.0
+        is_int = name in ["motion", "ventilation_enc", "is_working_hours", "hour", "day_of_week", "occupancy"]
+        result[name] = {
+            "min": int(f_min) if is_int else round(f_min, 2),
+            "max": int(f_max) if is_int else round(f_max, 2),
+            "default": int(round(f_mean)) if is_int else round(f_mean, 2),
+            "unit": UNITS.get(name, ""),
+            "type": "integer" if is_int else "float",
+        }
+    return result
+
+
+@app.get("/evaluation")
+def evaluation() -> dict[str, Any]:
+    rf_metrics = MODEL_META.get("comparison", {}).get("Random Forest", {})
+    return {
+        "model_name": MODEL_META.get("selected_model", "Random Forest"),
+        "metrics": rf_metrics,
+        "r2": rf_metrics.get("r2"),
+        "mae": rf_metrics.get("mae"),
+        "rmse": rf_metrics.get("rmse"),
+        "rows_train": MODEL_META.get("rows_train", 8000),
+        "rows_test": MODEL_META.get("rows_test", 2000),
+        "evaluation_sample": EVALUATION_SAMPLE,
+        "metrics_caveat": "Metrics evaluate a model of a derived proxy, not measured or regulatory AQI.",
+    }
+
+
 @app.get("/records")
 def records(start: str | None = None, end: str | None = None,
             limit: int = Query(default=500, ge=1, le=5000), offset: int = Query(default=0, ge=0)) -> dict[str, Any]:
@@ -336,11 +388,41 @@ def advisor(request: AdvisorRequest) -> dict[str, Any]:
     params = request.params
     source = "the selected historical record" if params.data_source == "historical" else "your simulated inputs"
 
-    if re.fullmatch(r"(?:hi|hello|hey|hiya|howdy|good morning|good afternoon|good evening)[!,.\s]*", normalized):
+    if re.fullmatch(r"(?:hi|hello|hey|hiya|howdy|good morning|good afternoon|good evening)[!,.\s]*", normalized) or normalized in ["hi", "hello", "hey"]:
         return {"answer": "Hi! I can explain AirMind AI, look up a sensor reading, or help interpret the current indoor conditions. What would you like to know?", "provider": "rule_based", "intent": "greeting"}
 
-    if "airmind" in normalized and re.search(r"\b(what is|what's|tell me about|explain)\b", normalized):
+    if ("airmind" in normalized and re.search(r"\b(what is|what's|tell me about|explain)\b", normalized)) or "what is airmind" in normalized:
         return {"answer": "AirMind AI is an indoor environmental intelligence project. It calculates a custom air-quality proxy from sensor readings, estimates that proxy with a Random Forest, explains model contributions with SHAP, and suggests actions using project screening rules.", "provider": "rule_based", "intent": "project_info"}
+
+    if re.search(r"\b(why.*(air quality|poor|elevated|high|bad)|cause.*(air quality|poor)|contribut.*(poor|high))\b", normalized) or "why might my air quality be poor" in normalized or "why is air quality poor" in normalized:
+        try:
+            explanation = _explain(params)
+            positive_contribs = [c for c in explanation.get("contributions", []) if c["contribution"] > 0]
+            if positive_contribs:
+                top = positive_contribs[:3]
+                items_str = ", ".join(f"{c['feature'].upper()} (+{c['contribution']:.2f} pts at {c['value']} {c['unit']})" for c in top)
+                return {
+                    "answer": f"Based on local SHAP analysis of the Random Forest model, the top features pushing the estimated proxy higher are: {items_str}. Note that SHAP attribution describes model feature importance, not physical causation.",
+                    "provider": "rule_based",
+                    "intent": "shap_explanation",
+                    "contributions": top,
+                }
+            else:
+                return {
+                    "answer": "Current readings are not elevating the model proxy above baseline. All major features have negative or negligible contributions.",
+                    "provider": "rule_based",
+                    "intent": "shap_explanation",
+                }
+        except Exception:
+            pass
+
+    if re.search(r"\b(model accuracy|how accurate|evaluation|performance|r2|mae|rmse|metrics|what is the model)\b", normalized):
+        rf_metrics = MODEL_META.get("comparison", {}).get("Random Forest", {})
+        return {
+            "answer": f"The Random Forest model was evaluated on 2,000 held-out test rows, achieving an R² of {rf_metrics.get('r2', 1.0):.4f}, MAE of {rf_metrics.get('mae', 0.0469):.4f}, and RMSE of {rf_metrics.get('rmse', 0.1396):.4f} proxy points. Please note that this evaluates approximation of the project's derived proxy formula, not measured regulatory AQI.",
+            "provider": "rule_based",
+            "intent": "model_accuracy",
+        }
 
     sensor_terms = [
         ("carbon monoxide", "co"), ("carbon dioxide", "co2"), ("pm2.5", "pm25"),
@@ -386,7 +468,23 @@ def advisor(request: AdvisorRequest) -> dict[str, Any]:
             else:
                 answer = f"Your {label} input is {display}. This is a recorded or simulated state, not a measured threshold for air safety."
             return {"answer": answer, "provider": "rule_based", "intent": "sensor_follow_up", "field": field}
-        return {"answer": f"Your {label} reading is {display} in {source}.", "provider": "rule_based", "intent": "sensor_reading", "field": field}
+        status_suffix = ""
+        limits = SCREENING_THRESHOLDS.get(field, {})
+        if limits and isinstance(value, (int, float)):
+            if "high" in limits and value >= limits["high"]:
+                status_suffix = f" (High, at or above project screening threshold {limits['high']} {unit})"
+            elif "urgent" in limits and value >= limits["urgent"]:
+                status_suffix = f" (Urgent, at or above project screening threshold {limits['urgent']} {unit})"
+            elif "elevated" in limits and value >= limits["elevated"]:
+                status_suffix = f" (Elevated, at or above project screening threshold {limits['elevated']} {unit})"
+            elif "low" in limits and "high" in limits:
+                if value < limits["low"] or value > limits["high"]:
+                    status_suffix = f" (Outside comfort screening range {limits['low']}-{limits['high']} {unit})"
+                else:
+                    status_suffix = " (Normal)"
+            else:
+                status_suffix = " (Normal)"
+        return {"answer": f"Your {label} reading is {display}{status_suffix} in {source}.", "provider": "rule_based", "intent": "sensor_reading", "field": field}
 
     if re.search(r"\b(what should i|what can i do|recommend|recommendation|suggest|how can i improve|action for|help with these readings)\b", normalized):
         recommendations = _recommendations(params)
