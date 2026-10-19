@@ -7,28 +7,30 @@ import joblib, json, numpy as np, datetime
 from pymongo import MongoClient
 from openai import OpenAI
 import os
+from pathlib import Path
 from dotenv import load_dotenv
 
-load_dotenv()
+BASE_DIR = Path(__file__).resolve().parent
+load_dotenv(BASE_DIR / ".env")
 
 app = FastAPI(title="AirMind AI API")
 app.add_middleware(CORSMiddleware, allow_origins=["*"], allow_methods=["*"], allow_headers=["*"])
 
 # ── Load model artifacts ────────────────────────────────────────
-model    = joblib.load("models/aqi_model.pkl")
-scaler   = joblib.load("models/scaler.pkl")
-FEATURES = json.load(open("models/feature_names.json"))
-FI       = json.load(open("models/feature_importance.json"))
-META     = json.load(open("models/model_meta.json"))
+model    = joblib.load(BASE_DIR / "models" / "aqi_model.pkl")
+scaler   = joblib.load(BASE_DIR / "models" / "scaler.pkl")
+FEATURES = json.loads((BASE_DIR / "models" / "feature_names.json").read_text(encoding="utf-8"))
+FI       = json.loads((BASE_DIR / "models" / "feature_importance.json").read_text(encoding="utf-8"))
+META     = json.loads((BASE_DIR / "models" / "model_meta.json").read_text(encoding="utf-8"))
 
-print(f"Model loaded — R²: {META['r2']}  MAE: {META['mae']}  trained on {META['rows_trained']} rows")
+print(f"Legacy model loaded; metadata keys: {', '.join(META.keys())}")
 
 # ── MongoDB ─────────────────────────────────────────────────────
-mongo = MongoClient(os.getenv("MONGO_URI", "mongodb://localhost:27017"))
-db    = mongo["airmind"]
+mongo = MongoClient(os.getenv("MONGO_URI"), serverSelectionTimeoutMS=1500) if os.getenv("MONGO_URI") else None
+db    = mongo["airmind"] if mongo is not None else None
 
 # ── OpenAI ──────────────────────────────────────────────────────
-openai_client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+openai_client = OpenAI(api_key=os.getenv("OPENAI_API_KEY")) if os.getenv("OPENAI_API_KEY") else None
 
 # ── AQI helpers ─────────────────────────────────────────────────
 def aqi_label(v):
@@ -239,3 +241,9 @@ def get_sessions():
 @app.get("/model-info")
 def model_info():
     return META
+
+
+# Keep the original implementation above for reference while exporting the current API.
+from api import app as production_app
+
+app = production_app

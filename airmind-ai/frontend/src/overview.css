@@ -1,0 +1,501 @@
+/* Overview Page Layout (Requirement 5) */
+.overview-layout {
+  display: grid;
+  grid-template-columns: 1fr 470px;
+  gap: 20px;
+  height: calc(100vh - 80px);
+  padding: 16px 24px 20px 24px;
+  box-sizing: border-box;
+  overflow: hidden;
+  min-height: 0;
+}
+
+/* 5. Center Area: Placeholder div for the 3D room (to be built next) */
+.room-center-area {
+  position: relative;
+  background: var(--panels);
+  border: var(--panel-border);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-radius: var(--panel-radius);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  height: 100%;
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.45);
+}
+
+.room-viewport-scene {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.room-bg-svg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Floating Room Sensor Callout Badges */
+.room-marker-badge {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(8, 24, 40, 0.88);
+  border: 1px solid rgba(46, 230, 214, 0.28);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 12px;
+  padding: 8px 12px;
+  color: var(--text);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5), 0 0 15px rgba(46, 230, 214, 0.12);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  z-index: 5;
+  user-select: none;
+}
+
+.room-marker-badge:hover,
+.room-marker-badge.selected {
+  border-color: var(--cyan);
+  background: rgba(12, 34, 54, 0.95);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6), 0 0 20px rgba(46, 230, 214, 0.35);
+  transform: translateY(-2px);
+}
+
+.marker-icon-box {
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  background: rgba(46, 230, 214, 0.12);
+  border: 1px solid rgba(46, 230, 214, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--cyan);
+  flex-shrink: 0;
+}
+
+.marker-info {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.marker-label {
+  font-size: 10px;
+  color: var(--muted);
+  font-weight: 500;
+}
+
+.marker-val-row {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+}
+
+.marker-val {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.marker-status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  margin-top: 2px;
+}
+
+.marker-status-dot.cyan {
+  background-color: var(--cyan);
+  box-shadow: 0 0 6px rgba(46, 230, 214, 0.6);
+}
+
+.marker-status-dot.amber {
+  background-color: var(--amber);
+  box-shadow: 0 0 6px rgba(255, 179, 71, 0.6);
+}
+
+.marker-status-dot.red {
+  background-color: var(--red);
+  box-shadow: 0 0 6px rgba(255, 107, 91, 0.6);
+}
+
+/* Floating Camera Toolbar at Bottom Center */
+.camera-controls-bar {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(5, 14, 25, 0.88);
+  border: 1px solid rgba(46, 230, 214, 0.22);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-radius: 16px;
+  padding: 6px 8px;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.5);
+}
+
+.cam-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  min-width: 58px;
+  height: 48px;
+  border-radius: 10px;
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--muted);
+  font-size: 10px;
+  font-family: var(--font-ui);
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.18s ease;
+  padding: 4px 8px;
+}
+
+.cam-btn:hover {
+  color: var(--text);
+  background: rgba(46, 230, 214, 0.06);
+}
+
+.cam-btn.active {
+  color: var(--cyan);
+  background: rgba(46, 230, 214, 0.12);
+  border-color: rgba(46, 230, 214, 0.4);
+  box-shadow: 0 0 12px rgba(46, 230, 214, 0.25);
+  font-weight: 600;
+}
+
+/* 5. Right Column Placeholder: 470px wide */
+.overview-right-column {
+  width: 470px;
+  min-width: 470px;
+  max-width: 470px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-right: 2px;
+}
+
+/* Right Rail Cards */
+.rail-card {
+  background: var(--panels);
+  border: var(--panel-border);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-radius: var(--panel-radius);
+  padding: 18px 20px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
+}
+
+.rail-card-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.rail-card-title-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.rail-card-title {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text);
+  letter-spacing: -0.01em;
+}
+
+.info-icon-btn {
+  background: transparent;
+  border: none;
+  padding: 0;
+  color: var(--muted);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.info-icon-btn:hover {
+  color: var(--cyan);
+}
+
+.proxy-pill {
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--cyan);
+  background: rgba(46, 230, 214, 0.08);
+  border: 1px solid rgba(46, 230, 214, 0.35);
+  border-radius: 9999px;
+  padding: 4px 10px;
+  white-space: nowrap;
+}
+
+/* Card 1: Indoor Air Quality Gauge */
+.gauge-content-row {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  margin-top: 4px;
+}
+
+.gauge-svg-wrap {
+  position: relative;
+  width: 130px;
+  height: 130px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.gauge-svg-element {
+  width: 100%;
+  height: 100%;
+}
+
+.gauge-text-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.gauge-number {
+  font-family: var(--font-mono);
+  font-size: 30px;
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1;
+}
+
+.gauge-pts {
+  font-size: 11px;
+  color: var(--muted);
+  margin-top: 4px;
+}
+
+.gauge-meta-block {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.status-label-caption {
+  font-size: 11px;
+  color: var(--muted);
+}
+
+.status-value-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.status-large-text {
+  font-size: 17px;
+  font-weight: 700;
+}
+
+.status-large-text.poor {
+  color: var(--red);
+}
+
+.status-large-text.moderate {
+  color: var(--amber);
+}
+
+.status-large-text.good {
+  color: var(--cyan);
+}
+
+.status-explanation {
+  margin: 4px 0 0 0;
+  font-size: 11.5px;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+/* Card 2: Selected Sensor */
+.sensor-select-box {
+  background: rgba(8, 24, 40, 0.9);
+  border: 1px solid rgba(46, 230, 214, 0.2);
+  border-radius: 8px;
+  color: var(--text);
+  font-family: var(--font-ui);
+  font-size: 11px;
+  padding: 4px 8px;
+  cursor: pointer;
+  max-width: 200px;
+}
+
+.selected-sensor-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 6px;
+  margin-bottom: 12px;
+}
+
+.sensor-big-icon-box {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: rgba(46, 230, 214, 0.12);
+  border: 1px solid rgba(46, 230, 214, 0.28);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--cyan);
+  flex-shrink: 0;
+}
+
+.sensor-name-val-group {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.sensor-sub-name {
+  font-size: 11px;
+  color: var(--muted);
+}
+
+.sensor-big-value {
+  font-family: var(--font-mono);
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1.1;
+}
+
+.sensor-state-pill {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.sensor-state-pill.elevated {
+  color: var(--amber);
+}
+
+.sensor-state-pill.urgent {
+  color: var(--red);
+}
+
+.sensor-state-pill.normal {
+  color: var(--cyan);
+}
+
+.about-reading-block {
+  border-top: 1px solid rgba(46, 230, 214, 0.1);
+  padding-top: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.about-reading-title {
+  font-size: 11px;
+  font-weight: 600;
+  color: #cfdfe8;
+}
+
+.about-reading-body {
+  margin: 0;
+  font-size: 11.5px;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+/* Card 3: Recent Trends */
+.trends-chart-container {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-top: 4px;
+}
+
+.trends-chart-svg-box {
+  position: relative;
+  width: 100%;
+  height: 120px;
+}
+
+.trend-svg-chart {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.trend-callout-pill {
+  position: absolute;
+  top: 14px;
+  right: 28px;
+  background: rgba(8, 24, 40, 0.95);
+  border: 1px solid rgba(46, 230, 214, 0.3);
+  backdrop-filter: blur(8px);
+  border-radius: 8px;
+  padding: 4px 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  pointer-events: none;
+}
+
+.callout-val {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.callout-time {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  color: var(--muted);
+}
+
+.trend-x-axis-row {
+  display: flex;
+  justify-content: space-between;
+  padding-left: 28px;
+  padding-right: 6px;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  color: var(--muted);
+}

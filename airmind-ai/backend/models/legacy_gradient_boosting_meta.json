@@ -1,0 +1,9 @@
+{
+  "model_name": "GradientBoostingRegressor",
+  "mae": 0.6258,
+  "r2": 0.998,
+  "rows_trained": 62397,
+  "rmse": null,
+  "evaluation_method": "Not recorded in the previous metadata; not directly comparable to the newly reproduced chronological holdout.",
+  "source_note": "Preserved from model_meta.json before the new model comparison. This is not a recovered Colab result."
+}

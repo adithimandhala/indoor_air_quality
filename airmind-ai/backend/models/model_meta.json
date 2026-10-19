@@ -1,5 +1,57 @@
 {
-  "mae": 0.6258,
-  "r2": 0.998,
-  "rows_trained": 62397
+  "selected_model": "Random Forest",
+  "selected_artifact": "random_forest_model.joblib",
+  "selection_reason": "Random Forest is primary per the user-reported Colab experiment; the original metrics were unavailable for verification.",
+  "results_origin": "newly_reproduced",
+  "original_colab_results_available": false,
+  "reproduced_best_model": "Random Forest",
+  "reproduced_metrics_agree_with_selection": true,
+  "evaluation_method": "Chronological holdout: earliest 80% train, latest 20% test; no shuffle.",
+  "target_name": "custom_indoor_air_quality_proxy",
+  "target_unit": "project index points; not regulatory AQI",
+  "target_method": "Maximum of PM2.5, CO2, TVOC, and CO sub-indices; see README.",
+  "rows_eligible": 89893,
+  "rows_train": 71914,
+  "rows_test": 17979,
+  "train_start": "2024-02-18T08:00:00",
+  "train_end": "2024-11-16T09:05:00",
+  "test_start": "2024-11-16T09:10:00",
+  "test_end": "2025-01-22T17:25:00",
+  "dataset_sha256": "45d1fe628d4ab99437c0716ba826a778737a1e2e7cb6d3b50f0d65fa5e71e591",
+  "feature_names": [
+    "temperature",
+    "humidity",
+    "co2",
+    "pm25",
+    "pm10",
+    "tvoc",
+    "co",
+    "light",
+    "motion",
+    "occupancy",
+    "ventilation_enc",
+    "hour",
+    "day_of_week",
+    "is_working_hours"
+  ],
+  "comparison": {
+    "Random Forest": {
+      "mae": 0.0469,
+      "rmse": 0.1396,
+      "r2": 1.0,
+      "artifact": "random_forest_model.joblib"
+    },
+    "Gradient Boosting": {
+      "mae": 0.6446,
+      "rmse": 1.1532,
+      "r2": 0.9979,
+      "artifact": "gradient_boosting_reproduced.joblib"
+    },
+    "XGBoost": {
+      "mae": 0.8699,
+      "rmse": 1.4165,
+      "r2": 0.9968,
+      "artifact": "xgboost_reproduced.joblib"
+    }
+  }
 }

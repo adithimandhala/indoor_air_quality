@@ -1,0 +1,52 @@
+.historical-picker-label { display: inline-flex; align-items: center; gap: 7px; margin-left: auto; color: var(--muted); font-size: 11px; }
+.historical-picker-label select, .trend-controls select { min-height: 32px; max-width: 220px; border: 1px solid var(--line); border-radius: 8px; background: rgba(8, 24, 40, 0.9); padding: 0 10px; color: var(--text); font-size: 11px; font-family: var(--font-ui); }
+.sensor-reading-list { display: grid; }
+.reading-row { display: grid; grid-template-columns: minmax(130px, 1fr) minmax(120px, .8fr) 110px; align-items: center; gap: 14px; border-bottom: 1px solid var(--line); padding: 12px 4px; color: #c2d0d5; font-size: 12px; }
+.reading-row:last-child { border-bottom: 0; }
+.reading-row strong { color: #e4eef0; font: 600 14px var(--font-mono); }
+.reading-row strong small { margin-left: 6px; color: var(--muted); font: 11px var(--font-ui); }
+.reading-state { color: #89c4a0; font-size: 11px; text-align: right; }
+.reading-state.elevated { color: var(--amber); }
+.reading-state.high { color: var(--red); }
+.trend-controls { display: flex; align-items: center; gap: 14px; margin: 0 0 14px; color: var(--muted); font-size: 11px; }
+.trend-controls label { display: flex; align-items: center; gap: 8px; }
+.method-details { border-top: 1px solid var(--line); padding: 14px 4px; color: var(--muted); font-size: 11px; }
+.method-details summary { width: fit-content; color: var(--cyan); cursor: pointer; font-weight: 500; }
+.method-details p { max-width: 850px; margin: 10px 0 0; line-height: 1.65; }
+.prediction-pair { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
+.prediction-pair > div { display: grid; gap: 6px; }
+.prediction-pair span { color: var(--muted); font-size: 11px; }
+.prediction-pair strong { color: #e5f2ef; font: 700 32px var(--font-ui); }
+.prediction-pair small { margin-left: 6px; color: var(--muted); font: 12px var(--font-ui); }
+.evaluation-meta { display: flex; flex-wrap: wrap; gap: 18px; border-top: 1px solid var(--line); margin-top: 16px; padding-top: 12px; color: var(--muted); font-size: 11px; }
+.evaluation-chart { margin-top: 18px; height: 260px; }
+.scenario-switch { display: flex; align-items: center; gap: 10px; color: #c7d5da; font-size: 11px; cursor: pointer; }
+.scenario-switch input { width: 16px; height: 16px; accent-color: var(--cyan); }
+.scenario-switch input:disabled { opacity: .5; }
+.scenario-compare { display: grid; grid-template-columns: minmax(0, 1fr) 24px minmax(0, 1fr); align-items: center; gap: 14px; border-top: 1px solid var(--line); margin-top: 14px; padding-top: 16px; }
+.scenario-compare > div { display: grid; gap: 6px; }
+.scenario-compare > div span { color: var(--muted); font-size: 10px; }
+.scenario-compare > div strong { color: #e2f1ed; font: 700 20px var(--font-ui); }
+.scenario-compare > svg { color: var(--cyan); }
+.scenario-compare > p { grid-column: 1 / -1; margin: 0; color: var(--muted); font-size: 11px; line-height: 1.5; }
+.ventilation-status { display: flex; align-items: center; gap: 8px; color: #c7d4d9; font-size: 12px; }
+.ventilation-action { border-left: 3px solid var(--amber); margin-top: 16px; padding: 8px 0 8px 14px; }
+.ventilation-action.priority-urgent, .ventilation-action.priority-high { border-left-color: var(--red); }
+.ventilation-action > span { color: var(--amber); font-size: 11px; font-weight: 600; text-transform: capitalize; }
+.ventilation-action.priority-urgent > span, .ventilation-action.priority-high > span { color: var(--red); }
+.ventilation-action p { margin: 6px 0; color: var(--muted); font-size: 11px; line-height: 1.55; }
+.ventilation-action strong { color: #d7e3e5; font-size: 12px; font-weight: 500; line-height: 1.5; }
+.explanation-lead { margin: 0 0 14px; color: #d1e0e2; font-size: 12px; }
+.importance-chart { height: 260px; }
+.advisor-panel { display: grid; gap: 14px; }
+.advisor-panel .chat-window { min-height: 380px; }
+
+@media (max-width: 680px) {
+  .historical-picker-label { width: 100%; margin: 4px 0 0; }
+  .historical-picker-label select { max-width: 100%; flex: 1; }
+  .reading-row { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) 75px; gap: 8px; font-size: 10px; }
+  .prediction-pair { gap: 14px; }
+  .prediction-pair strong { font-size: 24px; }
+  .scenario-compare { gap: 8px; }
+  .advisor-panel .chat-window { min-height: 300px; }
+}

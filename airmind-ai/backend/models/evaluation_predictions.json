@@ -1,0 +1,2502 @@
+[
+  {
+    "timestamp": "2024-11-16T09:10:00",
+    "actual": 147.45,
+    "predicted": 147.463
+  },
+  {
+    "timestamp": "2024-11-16T12:25:00",
+    "actual": 141.73,
+    "predicted": 141.73
+  },
+  {
+    "timestamp": "2024-11-16T15:40:00",
+    "actual": 120.92,
+    "predicted": 120.92
+  },
+  {
+    "timestamp": "2024-11-16T18:50:00",
+    "actual": 145.04,
+    "predicted": 145.046
+  },
+  {
+    "timestamp": "2024-11-16T22:00:00",
+    "actual": 80.82,
+    "predicted": 80.641
+  },
+  {
+    "timestamp": "2024-11-17T01:05:00",
+    "actual": 145.1,
+    "predicted": 145.113
+  },
+  {
+    "timestamp": "2024-11-17T04:45:00",
+    "actual": 137.29,
+    "predicted": 137.3
+  },
+  {
+    "timestamp": "2024-11-17T08:00:00",
+    "actual": 121.73,
+    "predicted": 121.749
+  },
+  {
+    "timestamp": "2024-11-17T11:10:00",
+    "actual": 154.03,
+    "predicted": 154.023
+  },
+  {
+    "timestamp": "2024-11-17T14:30:00",
+    "actual": 145.44,
+    "predicted": 145.443
+  },
+  {
+    "timestamp": "2024-11-17T17:45:00",
+    "actual": 110.91,
+    "predicted": 110.895
+  },
+  {
+    "timestamp": "2024-11-17T20:45:00",
+    "actual": 147.62,
+    "predicted": 147.606
+  },
+  {
+    "timestamp": "2024-11-18T00:00:00",
+    "actual": 150.98,
+    "predicted": 150.978
+  },
+  {
+    "timestamp": "2024-11-18T03:15:00",
+    "actual": 148.93,
+    "predicted": 148.96
+  },
+  {
+    "timestamp": "2024-11-18T06:20:00",
+    "actual": 158.17,
+    "predicted": 158.162
+  },
+  {
+    "timestamp": "2024-11-18T09:35:00",
+    "actual": 134.08,
+    "predicted": 133.823
+  },
+  {
+    "timestamp": "2024-11-18T12:45:00",
+    "actual": 52.93,
+    "predicted": 52.887
+  },
+  {
+    "timestamp": "2024-11-18T16:00:00",
+    "actual": 159.31,
+    "predicted": 159.347
+  },
+  {
+    "timestamp": "2024-11-18T19:15:00",
+    "actual": 141.43,
+    "predicted": 141.43
+  },
+  {
+    "timestamp": "2024-11-18T22:35:00",
+    "actual": 134.03,
+    "predicted": 134.051
+  },
+  {
+    "timestamp": "2024-11-19T01:55:00",
+    "actual": 112.85,
+    "predicted": 112.778
+  },
+  {
+    "timestamp": "2024-11-19T05:10:00",
+    "actual": 97.1,
+    "predicted": 97.167
+  },
+  {
+    "timestamp": "2024-11-19T08:20:00",
+    "actual": 124.29,
+    "predicted": 124.303
+  },
+  {
+    "timestamp": "2024-11-19T11:25:00",
+    "actual": 90.61,
+    "predicted": 90.607
+  },
+  {
+    "timestamp": "2024-11-19T14:30:00",
+    "actual": 138.98,
+    "predicted": 138.98
+  },
+  {
+    "timestamp": "2024-11-19T17:45:00",
+    "actual": 152.04,
+    "predicted": 152.057
+  },
+  {
+    "timestamp": "2024-11-19T21:10:00",
+    "actual": 156.45,
+    "predicted": 156.442
+  },
+  {
+    "timestamp": "2024-11-20T00:25:00",
+    "actual": 150.08,
+    "predicted": 150.064
+  },
+  {
+    "timestamp": "2024-11-20T03:50:00",
+    "actual": 138.72,
+    "predicted": 138.716
+  },
+  {
+    "timestamp": "2024-11-20T07:00:00",
+    "actual": 150.23,
+    "predicted": 150.242
+  },
+  {
+    "timestamp": "2024-11-20T10:15:00",
+    "actual": 110.02,
+    "predicted": 110.036
+  },
+  {
+    "timestamp": "2024-11-20T13:30:00",
+    "actual": 137.76,
+    "predicted": 137.789
+  },
+  {
+    "timestamp": "2024-11-20T16:45:00",
+    "actual": 151.36,
+    "predicted": 151.363
+  },
+  {
+    "timestamp": "2024-11-20T20:30:00",
+    "actual": 143.96,
+    "predicted": 143.976
+  },
+  {
+    "timestamp": "2024-11-20T23:40:00",
+    "actual": 114.68,
+    "predicted": 114.741
+  },
+  {
+    "timestamp": "2024-11-21T02:55:00",
+    "actual": 96.75,
+    "predicted": 96.813
+  },
+  {
+    "timestamp": "2024-11-21T06:10:00",
+    "actual": 157.24,
+    "predicted": 157.268
+  },
+  {
+    "timestamp": "2024-11-21T09:25:00",
+    "actual": 101.86,
+    "predicted": 101.895
+  },
+  {
+    "timestamp": "2024-11-21T12:35:00",
+    "actual": 142.83,
+    "predicted": 142.864
+  },
+  {
+    "timestamp": "2024-11-21T15:50:00",
+    "actual": 140.41,
+    "predicted": 140.463
+  },
+  {
+    "timestamp": "2024-11-21T19:05:00",
+    "actual": 151.27,
+    "predicted": 151.271
+  },
+  {
+    "timestamp": "2024-11-21T22:20:00",
+    "actual": 156.68,
+    "predicted": 156.672
+  },
+  {
+    "timestamp": "2024-11-22T01:35:00",
+    "actual": 145.68,
+    "predicted": 145.626
+  },
+  {
+    "timestamp": "2024-11-22T05:10:00",
+    "actual": 73.42,
+    "predicted": 73.628
+  },
+  {
+    "timestamp": "2024-11-22T08:20:00",
+    "actual": 103.12,
+    "predicted": 103.124
+  },
+  {
+    "timestamp": "2024-11-22T11:20:00",
+    "actual": 149.0,
+    "predicted": 148.971
+  },
+  {
+    "timestamp": "2024-11-22T14:45:00",
+    "actual": 151.32,
+    "predicted": 151.307
+  },
+  {
+    "timestamp": "2024-11-22T18:10:00",
+    "actual": 80.43,
+    "predicted": 80.423
+  },
+  {
+    "timestamp": "2024-11-22T21:35:00",
+    "actual": 76.01,
+    "predicted": 76.051
+  },
+  {
+    "timestamp": "2024-11-23T00:55:00",
+    "actual": 133.47,
+    "predicted": 133.47
+  },
+  {
+    "timestamp": "2024-11-23T04:10:00",
+    "actual": 153.08,
+    "predicted": 153.096
+  },
+  {
+    "timestamp": "2024-11-23T07:35:00",
+    "actual": 117.95,
+    "predicted": 118.025
+  },
+  {
+    "timestamp": "2024-11-23T10:45:00",
+    "actual": 145.71,
+    "predicted": 145.719
+  },
+  {
+    "timestamp": "2024-11-23T14:10:00",
+    "actual": 158.05,
+    "predicted": 158.036
+  },
+  {
+    "timestamp": "2024-11-23T17:25:00",
+    "actual": 159.62,
+    "predicted": 159.636
+  },
+  {
+    "timestamp": "2024-11-23T20:50:00",
+    "actual": 145.11,
+    "predicted": 144.859
+  },
+  {
+    "timestamp": "2024-11-24T00:00:00",
+    "actual": 126.78,
+    "predicted": 126.679
+  },
+  {
+    "timestamp": "2024-11-24T03:20:00",
+    "actual": 154.53,
+    "predicted": 154.547
+  },
+  {
+    "timestamp": "2024-11-24T06:25:00",
+    "actual": 142.65,
+    "predicted": 142.65
+  },
+  {
+    "timestamp": "2024-11-24T09:40:00",
+    "actual": 149.69,
+    "predicted": 149.691
+  },
+  {
+    "timestamp": "2024-11-24T13:00:00",
+    "actual": 157.47,
+    "predicted": 157.472
+  },
+  {
+    "timestamp": "2024-11-24T16:15:00",
+    "actual": 119.75,
+    "predicted": 119.772
+  },
+  {
+    "timestamp": "2024-11-24T19:50:00",
+    "actual": 90.84,
+    "predicted": 90.613
+  },
+  {
+    "timestamp": "2024-11-24T23:00:00",
+    "actual": 147.95,
+    "predicted": 147.958
+  },
+  {
+    "timestamp": "2024-11-25T02:15:00",
+    "actual": 89.64,
+    "predicted": 89.691
+  },
+  {
+    "timestamp": "2024-11-25T05:30:00",
+    "actual": 155.42,
+    "predicted": 155.419
+  },
+  {
+    "timestamp": "2024-11-25T08:45:00",
+    "actual": 94.89,
+    "predicted": 94.987
+  },
+  {
+    "timestamp": "2024-11-25T12:00:00",
+    "actual": 152.97,
+    "predicted": 152.958
+  },
+  {
+    "timestamp": "2024-11-25T15:10:00",
+    "actual": 154.26,
+    "predicted": 154.236
+  },
+  {
+    "timestamp": "2024-11-25T18:25:00",
+    "actual": 123.83,
+    "predicted": 123.855
+  },
+  {
+    "timestamp": "2024-11-25T21:40:00",
+    "actual": 111.3,
+    "predicted": 111.286
+  },
+  {
+    "timestamp": "2024-11-26T00:40:00",
+    "actual": 154.48,
+    "predicted": 154.502
+  },
+  {
+    "timestamp": "2024-11-26T03:55:00",
+    "actual": 155.76,
+    "predicted": 155.759
+  },
+  {
+    "timestamp": "2024-11-26T07:00:00",
+    "actual": 139.75,
+    "predicted": 139.768
+  },
+  {
+    "timestamp": "2024-11-26T10:05:00",
+    "actual": 138.45,
+    "predicted": 138.479
+  },
+  {
+    "timestamp": "2024-11-26T13:05:00",
+    "actual": 130.14,
+    "predicted": 130.147
+  },
+  {
+    "timestamp": "2024-11-26T16:25:00",
+    "actual": 136.93,
+    "predicted": 137.075
+  },
+  {
+    "timestamp": "2024-11-26T19:35:00",
+    "actual": 127.35,
+    "predicted": 127.351
+  },
+  {
+    "timestamp": "2024-11-26T22:55:00",
+    "actual": 126.43,
+    "predicted": 126.451
+  },
+  {
+    "timestamp": "2024-11-27T02:20:00",
+    "actual": 148.16,
+    "predicted": 148.16
+  },
+  {
+    "timestamp": "2024-11-27T05:40:00",
+    "actual": 139.9,
+    "predicted": 139.898
+  },
+  {
+    "timestamp": "2024-11-27T08:45:00",
+    "actual": 101.71,
+    "predicted": 101.678
+  },
+  {
+    "timestamp": "2024-11-27T12:05:00",
+    "actual": 154.31,
+    "predicted": 154.336
+  },
+  {
+    "timestamp": "2024-11-27T15:10:00",
+    "actual": 106.58,
+    "predicted": 106.729
+  },
+  {
+    "timestamp": "2024-11-27T18:35:00",
+    "actual": 106.68,
+    "predicted": 106.652
+  },
+  {
+    "timestamp": "2024-11-27T21:45:00",
+    "actual": 152.65,
+    "predicted": 152.643
+  },
+  {
+    "timestamp": "2024-11-28T00:55:00",
+    "actual": 130.71,
+    "predicted": 130.71
+  },
+  {
+    "timestamp": "2024-11-28T04:10:00",
+    "actual": 154.42,
+    "predicted": 154.403
+  },
+  {
+    "timestamp": "2024-11-28T07:25:00",
+    "actual": 99.91,
+    "predicted": 99.918
+  },
+  {
+    "timestamp": "2024-11-28T10:35:00",
+    "actual": 154.67,
+    "predicted": 154.691
+  },
+  {
+    "timestamp": "2024-11-28T13:45:00",
+    "actual": 129.8,
+    "predicted": 129.8
+  },
+  {
+    "timestamp": "2024-11-28T16:45:00",
+    "actual": 111.73,
+    "predicted": 111.733
+  },
+  {
+    "timestamp": "2024-11-28T20:00:00",
+    "actual": 86.15,
+    "predicted": 86.161
+  },
+  {
+    "timestamp": "2024-11-28T23:10:00",
+    "actual": 112.9,
+    "predicted": 112.853
+  },
+  {
+    "timestamp": "2024-11-29T02:25:00",
+    "actual": 141.78,
+    "predicted": 141.797
+  },
+  {
+    "timestamp": "2024-11-29T05:40:00",
+    "actual": 102.23,
+    "predicted": 102.341
+  },
+  {
+    "timestamp": "2024-11-29T08:55:00",
+    "actual": 88.42,
+    "predicted": 88.391
+  },
+  {
+    "timestamp": "2024-11-29T12:00:00",
+    "actual": 154.49,
+    "predicted": 154.516
+  },
+  {
+    "timestamp": "2024-11-29T15:05:00",
+    "actual": 135.61,
+    "predicted": 135.61
+  },
+  {
+    "timestamp": "2024-11-29T18:35:00",
+    "actual": 101.52,
+    "predicted": 101.531
+  },
+  {
+    "timestamp": "2024-11-29T21:40:00",
+    "actual": 148.04,
+    "predicted": 148.032
+  },
+  {
+    "timestamp": "2024-11-30T00:55:00",
+    "actual": 149.98,
+    "predicted": 149.872
+  },
+  {
+    "timestamp": "2024-11-30T04:00:00",
+    "actual": 146.02,
+    "predicted": 145.831
+  },
+  {
+    "timestamp": "2024-11-30T07:25:00",
+    "actual": 150.48,
+    "predicted": 150.48
+  },
+  {
+    "timestamp": "2024-11-30T10:40:00",
+    "actual": 138.5,
+    "predicted": 138.492
+  },
+  {
+    "timestamp": "2024-11-30T14:05:00",
+    "actual": 115.61,
+    "predicted": 115.609
+  },
+  {
+    "timestamp": "2024-11-30T17:20:00",
+    "actual": 144.97,
+    "predicted": 144.989
+  },
+  {
+    "timestamp": "2024-11-30T20:45:00",
+    "actual": 154.72,
+    "predicted": 154.729
+  },
+  {
+    "timestamp": "2024-11-30T23:55:00",
+    "actual": 142.08,
+    "predicted": 142.025
+  },
+  {
+    "timestamp": "2024-12-01T03:05:00",
+    "actual": 158.67,
+    "predicted": 158.677
+  },
+  {
+    "timestamp": "2024-12-01T06:25:00",
+    "actual": 147.29,
+    "predicted": 147.255
+  },
+  {
+    "timestamp": "2024-12-01T09:50:00",
+    "actual": 147.51,
+    "predicted": 147.46
+  },
+  {
+    "timestamp": "2024-12-01T12:50:00",
+    "actual": 126.12,
+    "predicted": 126.119
+  },
+  {
+    "timestamp": "2024-12-01T16:25:00",
+    "actual": 149.39,
+    "predicted": 149.39
+  },
+  {
+    "timestamp": "2024-12-01T19:55:00",
+    "actual": 116.4,
+    "predicted": 116.367
+  },
+  {
+    "timestamp": "2024-12-01T23:00:00",
+    "actual": 152.88,
+    "predicted": 152.871
+  },
+  {
+    "timestamp": "2024-12-02T02:20:00",
+    "actual": 83.21,
+    "predicted": 83.242
+  },
+  {
+    "timestamp": "2024-12-02T05:20:00",
+    "actual": 153.12,
+    "predicted": 153.12
+  },
+  {
+    "timestamp": "2024-12-02T08:35:00",
+    "actual": 158.67,
+    "predicted": 158.677
+  },
+  {
+    "timestamp": "2024-12-02T11:50:00",
+    "actual": 136.98,
+    "predicted": 136.923
+  },
+  {
+    "timestamp": "2024-12-02T15:15:00",
+    "actual": 95.08,
+    "predicted": 95.133
+  },
+  {
+    "timestamp": "2024-12-02T18:20:00",
+    "actual": 147.96,
+    "predicted": 147.971
+  },
+  {
+    "timestamp": "2024-12-02T21:35:00",
+    "actual": 152.36,
+    "predicted": 152.354
+  },
+  {
+    "timestamp": "2024-12-03T00:55:00",
+    "actual": 128.52,
+    "predicted": 128.514
+  },
+  {
+    "timestamp": "2024-12-03T03:55:00",
+    "actual": 151.52,
+    "predicted": 151.529
+  },
+  {
+    "timestamp": "2024-12-03T07:35:00",
+    "actual": 103.03,
+    "predicted": 103.076
+  },
+  {
+    "timestamp": "2024-12-03T10:40:00",
+    "actual": 153.8,
+    "predicted": 153.809
+  },
+  {
+    "timestamp": "2024-12-03T13:50:00",
+    "actual": 74.08,
+    "predicted": 73.988
+  },
+  {
+    "timestamp": "2024-12-03T17:15:00",
+    "actual": 145.0,
+    "predicted": 144.981
+  },
+  {
+    "timestamp": "2024-12-03T20:35:00",
+    "actual": 112.3,
+    "predicted": 112.313
+  },
+  {
+    "timestamp": "2024-12-03T23:50:00",
+    "actual": 124.64,
+    "predicted": 124.651
+  },
+  {
+    "timestamp": "2024-12-04T03:00:00",
+    "actual": 68.88,
+    "predicted": 68.824
+  },
+  {
+    "timestamp": "2024-12-04T06:10:00",
+    "actual": 143.27,
+    "predicted": 142.954
+  },
+  {
+    "timestamp": "2024-12-04T09:15:00",
+    "actual": 157.41,
+    "predicted": 157.444
+  },
+  {
+    "timestamp": "2024-12-04T12:30:00",
+    "actual": 111.38,
+    "predicted": 111.494
+  },
+  {
+    "timestamp": "2024-12-04T15:45:00",
+    "actual": 120.5,
+    "predicted": 120.509
+  },
+  {
+    "timestamp": "2024-12-04T18:50:00",
+    "actual": 153.27,
+    "predicted": 153.272
+  },
+  {
+    "timestamp": "2024-12-04T22:00:00",
+    "actual": 158.31,
+    "predicted": 158.333
+  },
+  {
+    "timestamp": "2024-12-05T01:10:00",
+    "actual": 158.39,
+    "predicted": 158.363
+  },
+  {
+    "timestamp": "2024-12-05T04:35:00",
+    "actual": 155.46,
+    "predicted": 155.435
+  },
+  {
+    "timestamp": "2024-12-05T07:45:00",
+    "actual": 150.38,
+    "predicted": 150.396
+  },
+  {
+    "timestamp": "2024-12-05T10:55:00",
+    "actual": 139.75,
+    "predicted": 139.768
+  },
+  {
+    "timestamp": "2024-12-05T14:05:00",
+    "actual": 93.89,
+    "predicted": 93.884
+  },
+  {
+    "timestamp": "2024-12-05T17:35:00",
+    "actual": 90.78,
+    "predicted": 90.854
+  },
+  {
+    "timestamp": "2024-12-05T20:40:00",
+    "actual": 101.38,
+    "predicted": 101.531
+  },
+  {
+    "timestamp": "2024-12-06T00:10:00",
+    "actual": 153.67,
+    "predicted": 153.661
+  },
+  {
+    "timestamp": "2024-12-06T03:25:00",
+    "actual": 136.95,
+    "predicted": 136.97
+  },
+  {
+    "timestamp": "2024-12-06T07:00:00",
+    "actual": 141.42,
+    "predicted": 141.406
+  },
+  {
+    "timestamp": "2024-12-06T10:05:00",
+    "actual": 128.1,
+    "predicted": 128.015
+  },
+  {
+    "timestamp": "2024-12-06T13:10:00",
+    "actual": 133.55,
+    "predicted": 133.692
+  },
+  {
+    "timestamp": "2024-12-06T16:25:00",
+    "actual": 112.3,
+    "predicted": 112.307
+  },
+  {
+    "timestamp": "2024-12-06T19:35:00",
+    "actual": 145.48,
+    "predicted": 145.532
+  },
+  {
+    "timestamp": "2024-12-06T23:00:00",
+    "actual": 159.61,
+    "predicted": 159.602
+  },
+  {
+    "timestamp": "2024-12-07T02:05:00",
+    "actual": 124.6,
+    "predicted": 124.603
+  },
+  {
+    "timestamp": "2024-12-07T05:10:00",
+    "actual": 153.66,
+    "predicted": 153.656
+  },
+  {
+    "timestamp": "2024-12-07T08:45:00",
+    "actual": 149.08,
+    "predicted": 149.125
+  },
+  {
+    "timestamp": "2024-12-07T11:55:00",
+    "actual": 114.83,
+    "predicted": 114.85
+  },
+  {
+    "timestamp": "2024-12-07T15:05:00",
+    "actual": 100.41,
+    "predicted": 100.408
+  },
+  {
+    "timestamp": "2024-12-07T18:30:00",
+    "actual": 153.73,
+    "predicted": 153.718
+  },
+  {
+    "timestamp": "2024-12-07T21:50:00",
+    "actual": 139.5,
+    "predicted": 139.512
+  },
+  {
+    "timestamp": "2024-12-08T00:55:00",
+    "actual": 106.84,
+    "predicted": 106.56
+  },
+  {
+    "timestamp": "2024-12-08T04:10:00",
+    "actual": 134.69,
+    "predicted": 134.693
+  },
+  {
+    "timestamp": "2024-12-08T07:30:00",
+    "actual": 139.85,
+    "predicted": 139.854
+  },
+  {
+    "timestamp": "2024-12-08T10:40:00",
+    "actual": 147.97,
+    "predicted": 147.961
+  },
+  {
+    "timestamp": "2024-12-08T14:05:00",
+    "actual": 154.24,
+    "predicted": 154.227
+  },
+  {
+    "timestamp": "2024-12-08T17:20:00",
+    "actual": 151.72,
+    "predicted": 151.722
+  },
+  {
+    "timestamp": "2024-12-08T20:20:00",
+    "actual": 151.73,
+    "predicted": 151.734
+  },
+  {
+    "timestamp": "2024-12-08T23:30:00",
+    "actual": 152.35,
+    "predicted": 152.339
+  },
+  {
+    "timestamp": "2024-12-09T02:45:00",
+    "actual": 157.47,
+    "predicted": 157.472
+  },
+  {
+    "timestamp": "2024-12-09T06:10:00",
+    "actual": 113.57,
+    "predicted": 113.546
+  },
+  {
+    "timestamp": "2024-12-09T09:30:00",
+    "actual": 122.76,
+    "predicted": 122.76
+  },
+  {
+    "timestamp": "2024-12-09T12:45:00",
+    "actual": 93.98,
+    "predicted": 93.949
+  },
+  {
+    "timestamp": "2024-12-09T16:15:00",
+    "actual": 146.26,
+    "predicted": 146.318
+  },
+  {
+    "timestamp": "2024-12-09T19:25:00",
+    "actual": 151.0,
+    "predicted": 151.004
+  },
+  {
+    "timestamp": "2024-12-09T22:45:00",
+    "actual": 157.36,
+    "predicted": 157.332
+  },
+  {
+    "timestamp": "2024-12-10T01:55:00",
+    "actual": 147.35,
+    "predicted": 147.314
+  },
+  {
+    "timestamp": "2024-12-10T04:55:00",
+    "actual": 142.66,
+    "predicted": 142.714
+  },
+  {
+    "timestamp": "2024-12-10T07:55:00",
+    "actual": 149.08,
+    "predicted": 149.08
+  },
+  {
+    "timestamp": "2024-12-10T11:15:00",
+    "actual": 148.47,
+    "predicted": 148.47
+  },
+  {
+    "timestamp": "2024-12-10T14:35:00",
+    "actual": 156.59,
+    "predicted": 156.603
+  },
+  {
+    "timestamp": "2024-12-10T17:50:00",
+    "actual": 141.05,
+    "predicted": 140.994
+  },
+  {
+    "timestamp": "2024-12-10T20:55:00",
+    "actual": 129.15,
+    "predicted": 129.142
+  },
+  {
+    "timestamp": "2024-12-11T00:05:00",
+    "actual": 123.06,
+    "predicted": 123.065
+  },
+  {
+    "timestamp": "2024-12-11T03:25:00",
+    "actual": 73.15,
+    "predicted": 73.086
+  },
+  {
+    "timestamp": "2024-12-11T06:40:00",
+    "actual": 148.46,
+    "predicted": 148.442
+  },
+  {
+    "timestamp": "2024-12-11T09:50:00",
+    "actual": 144.25,
+    "predicted": 144.268
+  },
+  {
+    "timestamp": "2024-12-11T13:10:00",
+    "actual": 149.36,
+    "predicted": 149.345
+  },
+  {
+    "timestamp": "2024-12-11T16:20:00",
+    "actual": 90.61,
+    "predicted": 90.642
+  },
+  {
+    "timestamp": "2024-12-11T19:35:00",
+    "actual": 63.98,
+    "predicted": 63.684
+  },
+  {
+    "timestamp": "2024-12-11T22:35:00",
+    "actual": 138.44,
+    "predicted": 138.437
+  },
+  {
+    "timestamp": "2024-12-12T01:45:00",
+    "actual": 92.83,
+    "predicted": 92.879
+  },
+  {
+    "timestamp": "2024-12-12T05:05:00",
+    "actual": 77.08,
+    "predicted": 77.085
+  },
+  {
+    "timestamp": "2024-12-12T08:20:00",
+    "actual": 126.12,
+    "predicted": 125.277
+  },
+  {
+    "timestamp": "2024-12-12T11:45:00",
+    "actual": 143.71,
+    "predicted": 143.768
+  },
+  {
+    "timestamp": "2024-12-12T15:05:00",
+    "actual": 115.41,
+    "predicted": 115.418
+  },
+  {
+    "timestamp": "2024-12-12T18:20:00",
+    "actual": 130.25,
+    "predicted": 130.202
+  },
+  {
+    "timestamp": "2024-12-12T21:30:00",
+    "actual": 154.33,
+    "predicted": 154.356
+  },
+  {
+    "timestamp": "2024-12-13T00:40:00",
+    "actual": 158.79,
+    "predicted": 158.822
+  },
+  {
+    "timestamp": "2024-12-13T03:55:00",
+    "actual": 136.84,
+    "predicted": 136.702
+  },
+  {
+    "timestamp": "2024-12-13T07:00:00",
+    "actual": 142.59,
+    "predicted": 142.615
+  },
+  {
+    "timestamp": "2024-12-13T10:25:00",
+    "actual": 97.65,
+    "predicted": 97.718
+  },
+  {
+    "timestamp": "2024-12-13T13:35:00",
+    "actual": 132.66,
+    "predicted": 132.646
+  },
+  {
+    "timestamp": "2024-12-13T16:55:00",
+    "actual": 159.85,
+    "predicted": 159.88
+  },
+  {
+    "timestamp": "2024-12-13T20:10:00",
+    "actual": 106.84,
+    "predicted": 106.852
+  },
+  {
+    "timestamp": "2024-12-13T23:35:00",
+    "actual": 154.47,
+    "predicted": 154.466
+  },
+  {
+    "timestamp": "2024-12-14T02:45:00",
+    "actual": 153.05,
+    "predicted": 153.057
+  },
+  {
+    "timestamp": "2024-12-14T06:10:00",
+    "actual": 95.21,
+    "predicted": 95.216
+  },
+  {
+    "timestamp": "2024-12-14T09:35:00",
+    "actual": 130.71,
+    "predicted": 130.71
+  },
+  {
+    "timestamp": "2024-12-14T12:45:00",
+    "actual": 86.95,
+    "predicted": 87.034
+  },
+  {
+    "timestamp": "2024-12-14T15:55:00",
+    "actual": 153.43,
+    "predicted": 153.452
+  },
+  {
+    "timestamp": "2024-12-14T19:05:00",
+    "actual": 85.45,
+    "predicted": 85.477
+  },
+  {
+    "timestamp": "2024-12-14T22:05:00",
+    "actual": 156.79,
+    "predicted": 156.778
+  },
+  {
+    "timestamp": "2024-12-15T01:05:00",
+    "actual": 156.77,
+    "predicted": 156.773
+  },
+  {
+    "timestamp": "2024-12-15T04:20:00",
+    "actual": 124.9,
+    "predicted": 124.92
+  },
+  {
+    "timestamp": "2024-12-15T07:40:00",
+    "actual": 99.54,
+    "predicted": 99.524
+  },
+  {
+    "timestamp": "2024-12-15T10:45:00",
+    "actual": 155.67,
+    "predicted": 155.67
+  },
+  {
+    "timestamp": "2024-12-15T13:55:00",
+    "actual": 121.34,
+    "predicted": 121.359
+  },
+  {
+    "timestamp": "2024-12-15T17:05:00",
+    "actual": 120.17,
+    "predicted": 120.208
+  },
+  {
+    "timestamp": "2024-12-15T20:20:00",
+    "actual": 103.08,
+    "predicted": 103.105
+  },
+  {
+    "timestamp": "2024-12-15T23:35:00",
+    "actual": 145.4,
+    "predicted": 145.417
+  },
+  {
+    "timestamp": "2024-12-16T02:45:00",
+    "actual": 116.7,
+    "predicted": 116.713
+  },
+  {
+    "timestamp": "2024-12-16T05:55:00",
+    "actual": 148.93,
+    "predicted": 148.927
+  },
+  {
+    "timestamp": "2024-12-16T09:20:00",
+    "actual": 57.65,
+    "predicted": 57.477
+  },
+  {
+    "timestamp": "2024-12-16T12:40:00",
+    "actual": 137.51,
+    "predicted": 137.517
+  },
+  {
+    "timestamp": "2024-12-16T15:50:00",
+    "actual": 121.16,
+    "predicted": 121.211
+  },
+  {
+    "timestamp": "2024-12-16T19:10:00",
+    "actual": 156.28,
+    "predicted": 156.27
+  },
+  {
+    "timestamp": "2024-12-16T22:35:00",
+    "actual": 156.94,
+    "predicted": 156.947
+  },
+  {
+    "timestamp": "2024-12-17T01:45:00",
+    "actual": 122.44,
+    "predicted": 122.496
+  },
+  {
+    "timestamp": "2024-12-17T05:05:00",
+    "actual": 121.19,
+    "predicted": 121.388
+  },
+  {
+    "timestamp": "2024-12-17T08:25:00",
+    "actual": 112.9,
+    "predicted": 112.999
+  },
+  {
+    "timestamp": "2024-12-17T11:35:00",
+    "actual": 147.51,
+    "predicted": 147.472
+  },
+  {
+    "timestamp": "2024-12-17T14:45:00",
+    "actual": 130.44,
+    "predicted": 130.451
+  },
+  {
+    "timestamp": "2024-12-17T18:00:00",
+    "actual": 97.96,
+    "predicted": 97.965
+  },
+  {
+    "timestamp": "2024-12-17T21:25:00",
+    "actual": 151.99,
+    "predicted": 152.007
+  },
+  {
+    "timestamp": "2024-12-18T00:45:00",
+    "actual": 157.96,
+    "predicted": 157.984
+  },
+  {
+    "timestamp": "2024-12-18T03:55:00",
+    "actual": 144.12,
+    "predicted": 144.113
+  },
+  {
+    "timestamp": "2024-12-18T07:20:00",
+    "actual": 133.85,
+    "predicted": 133.836
+  },
+  {
+    "timestamp": "2024-12-18T10:25:00",
+    "actual": 133.38,
+    "predicted": 133.385
+  },
+  {
+    "timestamp": "2024-12-18T13:25:00",
+    "actual": 144.5,
+    "predicted": 144.51
+  },
+  {
+    "timestamp": "2024-12-18T16:30:00",
+    "actual": 116.98,
+    "predicted": 116.972
+  },
+  {
+    "timestamp": "2024-12-18T19:50:00",
+    "actual": 114.85,
+    "predicted": 114.84
+  },
+  {
+    "timestamp": "2024-12-18T23:00:00",
+    "actual": 137.95,
+    "predicted": 137.931
+  },
+  {
+    "timestamp": "2024-12-19T02:15:00",
+    "actual": 105.13,
+    "predicted": 105.172
+  },
+  {
+    "timestamp": "2024-12-19T05:45:00",
+    "actual": 150.49,
+    "predicted": 150.492
+  },
+  {
+    "timestamp": "2024-12-19T08:55:00",
+    "actual": 126.63,
+    "predicted": 126.613
+  },
+  {
+    "timestamp": "2024-12-19T12:05:00",
+    "actual": 98.68,
+    "predicted": 98.709
+  },
+  {
+    "timestamp": "2024-12-19T15:15:00",
+    "actual": 116.8,
+    "predicted": 116.541
+  },
+  {
+    "timestamp": "2024-12-19T18:40:00",
+    "actual": 98.57,
+    "predicted": 98.584
+  },
+  {
+    "timestamp": "2024-12-19T21:45:00",
+    "actual": 93.67,
+    "predicted": 93.712
+  },
+  {
+    "timestamp": "2024-12-20T00:55:00",
+    "actual": 158.07,
+    "predicted": 158.058
+  },
+  {
+    "timestamp": "2024-12-20T04:15:00",
+    "actual": 156.04,
+    "predicted": 156.063
+  },
+  {
+    "timestamp": "2024-12-20T07:35:00",
+    "actual": 141.83,
+    "predicted": 142.253
+  },
+  {
+    "timestamp": "2024-12-20T10:45:00",
+    "actual": 154.64,
+    "predicted": 154.632
+  },
+  {
+    "timestamp": "2024-12-20T13:55:00",
+    "actual": 136.08,
+    "predicted": 136.077
+  },
+  {
+    "timestamp": "2024-12-20T17:00:00",
+    "actual": 136.48,
+    "predicted": 136.472
+  },
+  {
+    "timestamp": "2024-12-20T20:10:00",
+    "actual": 103.61,
+    "predicted": 103.62
+  },
+  {
+    "timestamp": "2024-12-20T23:25:00",
+    "actual": 142.35,
+    "predicted": 142.35
+  },
+  {
+    "timestamp": "2024-12-21T02:50:00",
+    "actual": 77.41,
+    "predicted": 77.311
+  },
+  {
+    "timestamp": "2024-12-21T06:10:00",
+    "actual": 147.14,
+    "predicted": 147.166
+  },
+  {
+    "timestamp": "2024-12-21T09:25:00",
+    "actual": 154.42,
+    "predicted": 154.403
+  },
+  {
+    "timestamp": "2024-12-21T12:25:00",
+    "actual": 137.6,
+    "predicted": 137.595
+  },
+  {
+    "timestamp": "2024-12-21T15:30:00",
+    "actual": 145.5,
+    "predicted": 145.54
+  },
+  {
+    "timestamp": "2024-12-21T18:45:00",
+    "actual": 157.58,
+    "predicted": 157.611
+  },
+  {
+    "timestamp": "2024-12-21T22:05:00",
+    "actual": 140.64,
+    "predicted": 140.648
+  },
+  {
+    "timestamp": "2024-12-22T01:10:00",
+    "actual": 71.37,
+    "predicted": 71.425
+  },
+  {
+    "timestamp": "2024-12-22T04:30:00",
+    "actual": 126.12,
+    "predicted": 126.119
+  },
+  {
+    "timestamp": "2024-12-22T07:40:00",
+    "actual": 145.46,
+    "predicted": 145.46
+  },
+  {
+    "timestamp": "2024-12-22T10:45:00",
+    "actual": 82.96,
+    "predicted": 82.967
+  },
+  {
+    "timestamp": "2024-12-22T13:55:00",
+    "actual": 147.6,
+    "predicted": 147.581
+  },
+  {
+    "timestamp": "2024-12-22T17:10:00",
+    "actual": 152.15,
+    "predicted": 152.141
+  },
+  {
+    "timestamp": "2024-12-22T20:10:00",
+    "actual": 147.12,
+    "predicted": 147.154
+  },
+  {
+    "timestamp": "2024-12-22T23:25:00",
+    "actual": 158.23,
+    "predicted": 158.211
+  },
+  {
+    "timestamp": "2024-12-23T02:50:00",
+    "actual": 150.69,
+    "predicted": 150.673
+  },
+  {
+    "timestamp": "2024-12-23T06:00:00",
+    "actual": 148.78,
+    "predicted": 148.78
+  },
+  {
+    "timestamp": "2024-12-23T09:05:00",
+    "actual": 127.94,
+    "predicted": 127.884
+  },
+  {
+    "timestamp": "2024-12-23T12:20:00",
+    "actual": 153.63,
+    "predicted": 153.636
+  },
+  {
+    "timestamp": "2024-12-23T15:35:00",
+    "actual": 121.95,
+    "predicted": 121.981
+  },
+  {
+    "timestamp": "2024-12-23T18:55:00",
+    "actual": 117.07,
+    "predicted": 117.072
+  },
+  {
+    "timestamp": "2024-12-23T22:05:00",
+    "actual": 154.01,
+    "predicted": 154.011
+  },
+  {
+    "timestamp": "2024-12-24T01:05:00",
+    "actual": 153.78,
+    "predicted": 153.805
+  },
+  {
+    "timestamp": "2024-12-24T04:30:00",
+    "actual": 148.84,
+    "predicted": 148.851
+  },
+  {
+    "timestamp": "2024-12-24T07:55:00",
+    "actual": 152.61,
+    "predicted": 152.604
+  },
+  {
+    "timestamp": "2024-12-24T11:00:00",
+    "actual": 156.61,
+    "predicted": 156.609
+  },
+  {
+    "timestamp": "2024-12-24T14:20:00",
+    "actual": 114.72,
+    "predicted": 114.753
+  },
+  {
+    "timestamp": "2024-12-24T17:25:00",
+    "actual": 139.47,
+    "predicted": 138.964
+  },
+  {
+    "timestamp": "2024-12-24T20:45:00",
+    "actual": 131.8,
+    "predicted": 131.779
+  },
+  {
+    "timestamp": "2024-12-25T00:00:00",
+    "actual": 151.01,
+    "predicted": 151.017
+  },
+  {
+    "timestamp": "2024-12-25T03:10:00",
+    "actual": 153.48,
+    "predicted": 153.478
+  },
+  {
+    "timestamp": "2024-12-25T06:30:00",
+    "actual": 157.68,
+    "predicted": 157.644
+  },
+  {
+    "timestamp": "2024-12-25T09:45:00",
+    "actual": 117.93,
+    "predicted": 117.925
+  },
+  {
+    "timestamp": "2024-12-25T13:00:00",
+    "actual": 79.49,
+    "predicted": 79.431
+  },
+  {
+    "timestamp": "2024-12-25T16:15:00",
+    "actual": 128.57,
+    "predicted": 128.57
+  },
+  {
+    "timestamp": "2024-12-25T19:30:00",
+    "actual": 119.12,
+    "predicted": 119.116
+  },
+  {
+    "timestamp": "2024-12-25T22:50:00",
+    "actual": 150.25,
+    "predicted": 150.276
+  },
+  {
+    "timestamp": "2024-12-26T02:05:00",
+    "actual": 110.51,
+    "predicted": 110.52
+  },
+  {
+    "timestamp": "2024-12-26T05:15:00",
+    "actual": 102.24,
+    "predicted": 102.223
+  },
+  {
+    "timestamp": "2024-12-26T08:35:00",
+    "actual": 135.2,
+    "predicted": 135.219
+  },
+  {
+    "timestamp": "2024-12-26T12:00:00",
+    "actual": 136.03,
+    "predicted": 136.039
+  },
+  {
+    "timestamp": "2024-12-26T15:05:00",
+    "actual": 158.41,
+    "predicted": 158.4
+  },
+  {
+    "timestamp": "2024-12-26T18:10:00",
+    "actual": 135.62,
+    "predicted": 135.765
+  },
+  {
+    "timestamp": "2024-12-26T21:20:00",
+    "actual": 155.81,
+    "predicted": 155.798
+  },
+  {
+    "timestamp": "2024-12-27T00:35:00",
+    "actual": 150.61,
+    "predicted": 150.615
+  },
+  {
+    "timestamp": "2024-12-27T03:40:00",
+    "actual": 79.66,
+    "predicted": 79.656
+  },
+  {
+    "timestamp": "2024-12-27T06:50:00",
+    "actual": 148.78,
+    "predicted": 148.78
+  },
+  {
+    "timestamp": "2024-12-27T10:05:00",
+    "actual": 106.99,
+    "predicted": 106.991
+  },
+  {
+    "timestamp": "2024-12-27T13:25:00",
+    "actual": 159.82,
+    "predicted": 159.88
+  },
+  {
+    "timestamp": "2024-12-27T16:30:00",
+    "actual": 153.42,
+    "predicted": 153.442
+  },
+  {
+    "timestamp": "2024-12-27T19:55:00",
+    "actual": 136.97,
+    "predicted": 136.939
+  },
+  {
+    "timestamp": "2024-12-27T23:00:00",
+    "actual": 90.5,
+    "predicted": 90.527
+  },
+  {
+    "timestamp": "2024-12-28T02:05:00",
+    "actual": 114.18,
+    "predicted": 114.181
+  },
+  {
+    "timestamp": "2024-12-28T05:35:00",
+    "actual": 139.9,
+    "predicted": 139.898
+  },
+  {
+    "timestamp": "2024-12-28T08:50:00",
+    "actual": 125.53,
+    "predicted": 125.416
+  },
+  {
+    "timestamp": "2024-12-28T12:15:00",
+    "actual": 138.1,
+    "predicted": 138.128
+  },
+  {
+    "timestamp": "2024-12-28T15:30:00",
+    "actual": 158.83,
+    "predicted": 158.85
+  },
+  {
+    "timestamp": "2024-12-28T18:55:00",
+    "actual": 117.06,
+    "predicted": 117.156
+  },
+  {
+    "timestamp": "2024-12-28T21:55:00",
+    "actual": 131.95,
+    "predicted": 131.957
+  },
+  {
+    "timestamp": "2024-12-29T01:20:00",
+    "actual": 145.53,
+    "predicted": 145.519
+  },
+  {
+    "timestamp": "2024-12-29T04:50:00",
+    "actual": 146.52,
+    "predicted": 146.549
+  },
+  {
+    "timestamp": "2024-12-29T08:05:00",
+    "actual": 154.04,
+    "predicted": 154.028
+  },
+  {
+    "timestamp": "2024-12-29T11:15:00",
+    "actual": 157.18,
+    "predicted": 157.148
+  },
+  {
+    "timestamp": "2024-12-29T14:30:00",
+    "actual": 39.49,
+    "predicted": 40.072
+  },
+  {
+    "timestamp": "2024-12-29T17:50:00",
+    "actual": 91.24,
+    "predicted": 91.209
+  },
+  {
+    "timestamp": "2024-12-29T21:05:00",
+    "actual": 134.35,
+    "predicted": 134.345
+  },
+  {
+    "timestamp": "2024-12-30T00:20:00",
+    "actual": 134.98,
+    "predicted": 134.984
+  },
+  {
+    "timestamp": "2024-12-30T03:35:00",
+    "actual": 106.35,
+    "predicted": 106.434
+  },
+  {
+    "timestamp": "2024-12-30T06:45:00",
+    "actual": 100.7,
+    "predicted": 100.657
+  },
+  {
+    "timestamp": "2024-12-30T10:05:00",
+    "actual": 153.11,
+    "predicted": 153.114
+  },
+  {
+    "timestamp": "2024-12-30T13:10:00",
+    "actual": 152.45,
+    "predicted": 152.444
+  },
+  {
+    "timestamp": "2024-12-30T16:20:00",
+    "actual": 116.11,
+    "predicted": 116.121
+  },
+  {
+    "timestamp": "2024-12-30T19:20:00",
+    "actual": 142.04,
+    "predicted": 142.04
+  },
+  {
+    "timestamp": "2024-12-30T22:35:00",
+    "actual": 120.15,
+    "predicted": 120.158
+  },
+  {
+    "timestamp": "2024-12-31T02:00:00",
+    "actual": 139.0,
+    "predicted": 139.093
+  },
+  {
+    "timestamp": "2024-12-31T05:05:00",
+    "actual": 156.73,
+    "predicted": 156.74
+  },
+  {
+    "timestamp": "2024-12-31T08:20:00",
+    "actual": 143.36,
+    "predicted": 143.39
+  },
+  {
+    "timestamp": "2024-12-31T11:55:00",
+    "actual": 97.19,
+    "predicted": 97.195
+  },
+  {
+    "timestamp": "2024-12-31T15:20:00",
+    "actual": 134.24,
+    "predicted": 134.264
+  },
+  {
+    "timestamp": "2024-12-31T18:30:00",
+    "actual": 115.93,
+    "predicted": 115.946
+  },
+  {
+    "timestamp": "2024-12-31T21:40:00",
+    "actual": 89.44,
+    "predicted": 89.43
+  },
+  {
+    "timestamp": "2025-01-01T00:50:00",
+    "actual": 148.2,
+    "predicted": 148.407
+  },
+  {
+    "timestamp": "2025-01-01T04:15:00",
+    "actual": 97.99,
+    "predicted": 97.95
+  },
+  {
+    "timestamp": "2025-01-01T07:35:00",
+    "actual": 97.18,
+    "predicted": 97.183
+  },
+  {
+    "timestamp": "2025-01-01T10:35:00",
+    "actual": 112.96,
+    "predicted": 112.969
+  },
+  {
+    "timestamp": "2025-01-01T13:50:00",
+    "actual": 132.73,
+    "predicted": 132.765
+  },
+  {
+    "timestamp": "2025-01-01T17:10:00",
+    "actual": 160.09,
+    "predicted": 160.053
+  },
+  {
+    "timestamp": "2025-01-01T20:20:00",
+    "actual": 148.47,
+    "predicted": 148.47
+  },
+  {
+    "timestamp": "2025-01-01T23:30:00",
+    "actual": 138.37,
+    "predicted": 138.357
+  },
+  {
+    "timestamp": "2025-01-02T02:45:00",
+    "actual": 145.45,
+    "predicted": 145.45
+  },
+  {
+    "timestamp": "2025-01-02T06:00:00",
+    "actual": 122.14,
+    "predicted": 122.138
+  },
+  {
+    "timestamp": "2025-01-02T09:30:00",
+    "actual": 143.27,
+    "predicted": 143.269
+  },
+  {
+    "timestamp": "2025-01-02T13:00:00",
+    "actual": 97.49,
+    "predicted": 97.534
+  },
+  {
+    "timestamp": "2025-01-02T16:25:00",
+    "actual": 157.32,
+    "predicted": 157.305
+  },
+  {
+    "timestamp": "2025-01-02T19:35:00",
+    "actual": 97.65,
+    "predicted": 97.711
+  },
+  {
+    "timestamp": "2025-01-02T22:40:00",
+    "actual": 139.9,
+    "predicted": 139.898
+  },
+  {
+    "timestamp": "2025-01-03T02:05:00",
+    "actual": 122.23,
+    "predicted": 122.288
+  },
+  {
+    "timestamp": "2025-01-03T05:20:00",
+    "actual": 90.71,
+    "predicted": 90.75
+  },
+  {
+    "timestamp": "2025-01-03T08:30:00",
+    "actual": 112.51,
+    "predicted": 112.558
+  },
+  {
+    "timestamp": "2025-01-03T11:35:00",
+    "actual": 122.31,
+    "predicted": 122.333
+  },
+  {
+    "timestamp": "2025-01-03T14:55:00",
+    "actual": 157.61,
+    "predicted": 157.634
+  },
+  {
+    "timestamp": "2025-01-03T17:55:00",
+    "actual": 147.35,
+    "predicted": 147.359
+  },
+  {
+    "timestamp": "2025-01-03T21:25:00",
+    "actual": 158.55,
+    "predicted": 158.523
+  },
+  {
+    "timestamp": "2025-01-04T00:35:00",
+    "actual": 154.04,
+    "predicted": 154.028
+  },
+  {
+    "timestamp": "2025-01-04T03:55:00",
+    "actual": 119.94,
+    "predicted": 119.899
+  },
+  {
+    "timestamp": "2025-01-04T07:10:00",
+    "actual": 157.79,
+    "predicted": 157.816
+  },
+  {
+    "timestamp": "2025-01-04T10:15:00",
+    "actual": 127.85,
+    "predicted": 127.911
+  },
+  {
+    "timestamp": "2025-01-04T13:35:00",
+    "actual": 94.29,
+    "predicted": 94.247
+  },
+  {
+    "timestamp": "2025-01-04T16:40:00",
+    "actual": 81.31,
+    "predicted": 81.309
+  },
+  {
+    "timestamp": "2025-01-04T19:55:00",
+    "actual": 159.4,
+    "predicted": 159.362
+  },
+  {
+    "timestamp": "2025-01-04T23:30:00",
+    "actual": 154.93,
+    "predicted": 154.917
+  },
+  {
+    "timestamp": "2025-01-05T02:45:00",
+    "actual": 158.84,
+    "predicted": 158.85
+  },
+  {
+    "timestamp": "2025-01-05T06:00:00",
+    "actual": 85.04,
+    "predicted": 84.845
+  },
+  {
+    "timestamp": "2025-01-05T09:25:00",
+    "actual": 108.8,
+    "predicted": 108.783
+  },
+  {
+    "timestamp": "2025-01-05T12:50:00",
+    "actual": 156.16,
+    "predicted": 156.143
+  },
+  {
+    "timestamp": "2025-01-05T16:05:00",
+    "actual": 83.44,
+    "predicted": 83.485
+  },
+  {
+    "timestamp": "2025-01-05T19:20:00",
+    "actual": 156.54,
+    "predicted": 156.556
+  },
+  {
+    "timestamp": "2025-01-05T22:25:00",
+    "actual": 157.43,
+    "predicted": 157.461
+  },
+  {
+    "timestamp": "2025-01-06T01:25:00",
+    "actual": 143.57,
+    "predicted": 143.57
+  },
+  {
+    "timestamp": "2025-01-06T04:50:00",
+    "actual": 105.58,
+    "predicted": 105.635
+  },
+  {
+    "timestamp": "2025-01-06T07:55:00",
+    "actual": 146.09,
+    "predicted": 146.077
+  },
+  {
+    "timestamp": "2025-01-06T11:05:00",
+    "actual": 154.06,
+    "predicted": 154.041
+  },
+  {
+    "timestamp": "2025-01-06T14:10:00",
+    "actual": 132.55,
+    "predicted": 132.603
+  },
+  {
+    "timestamp": "2025-01-06T17:25:00",
+    "actual": 138.74,
+    "predicted": 138.738
+  },
+  {
+    "timestamp": "2025-01-06T20:30:00",
+    "actual": 121.64,
+    "predicted": 121.639
+  },
+  {
+    "timestamp": "2025-01-06T23:40:00",
+    "actual": 80.77,
+    "predicted": 80.289
+  },
+  {
+    "timestamp": "2025-01-07T03:20:00",
+    "actual": 89.57,
+    "predicted": 89.617
+  },
+  {
+    "timestamp": "2025-01-07T06:35:00",
+    "actual": 159.29,
+    "predicted": 159.297
+  },
+  {
+    "timestamp": "2025-01-07T10:05:00",
+    "actual": 145.38,
+    "predicted": 145.372
+  },
+  {
+    "timestamp": "2025-01-07T13:25:00",
+    "actual": 157.69,
+    "predicted": 157.647
+  },
+  {
+    "timestamp": "2025-01-07T16:25:00",
+    "actual": 128.07,
+    "predicted": 128.087
+  },
+  {
+    "timestamp": "2025-01-07T19:35:00",
+    "actual": 158.84,
+    "predicted": 158.85
+  },
+  {
+    "timestamp": "2025-01-07T22:45:00",
+    "actual": 114.0,
+    "predicted": 113.971
+  },
+  {
+    "timestamp": "2025-01-08T01:55:00",
+    "actual": 95.5,
+    "predicted": 95.478
+  },
+  {
+    "timestamp": "2025-01-08T05:10:00",
+    "actual": 83.88,
+    "predicted": 83.856
+  },
+  {
+    "timestamp": "2025-01-08T08:30:00",
+    "actual": 143.25,
+    "predicted": 143.236
+  },
+  {
+    "timestamp": "2025-01-08T11:45:00",
+    "actual": 109.25,
+    "predicted": 109.253
+  },
+  {
+    "timestamp": "2025-01-08T15:00:00",
+    "actual": 119.39,
+    "predicted": 119.395
+  },
+  {
+    "timestamp": "2025-01-08T18:35:00",
+    "actual": 147.38,
+    "predicted": 147.375
+  },
+  {
+    "timestamp": "2025-01-08T21:40:00",
+    "actual": 76.82,
+    "predicted": 76.773
+  },
+  {
+    "timestamp": "2025-01-09T00:45:00",
+    "actual": 156.01,
+    "predicted": 156.013
+  },
+  {
+    "timestamp": "2025-01-09T03:50:00",
+    "actual": 142.38,
+    "predicted": 142.43
+  },
+  {
+    "timestamp": "2025-01-09T07:20:00",
+    "actual": 130.46,
+    "predicted": 130.465
+  },
+  {
+    "timestamp": "2025-01-09T10:55:00",
+    "actual": 140.55,
+    "predicted": 140.585
+  },
+  {
+    "timestamp": "2025-01-09T14:00:00",
+    "actual": 151.97,
+    "predicted": 151.982
+  },
+  {
+    "timestamp": "2025-01-09T17:15:00",
+    "actual": 145.94,
+    "predicted": 145.985
+  },
+  {
+    "timestamp": "2025-01-09T20:30:00",
+    "actual": 114.81,
+    "predicted": 114.806
+  },
+  {
+    "timestamp": "2025-01-09T23:40:00",
+    "actual": 141.49,
+    "predicted": 141.516
+  },
+  {
+    "timestamp": "2025-01-10T02:55:00",
+    "actual": 158.35,
+    "predicted": 158.335
+  },
+  {
+    "timestamp": "2025-01-10T06:20:00",
+    "actual": 132.24,
+    "predicted": 132.24
+  },
+  {
+    "timestamp": "2025-01-10T09:45:00",
+    "actual": 135.74,
+    "predicted": 135.773
+  },
+  {
+    "timestamp": "2025-01-10T12:45:00",
+    "actual": 79.12,
+    "predicted": 79.136
+  },
+  {
+    "timestamp": "2025-01-10T16:05:00",
+    "actual": 128.27,
+    "predicted": 128.271
+  },
+  {
+    "timestamp": "2025-01-10T19:05:00",
+    "actual": 157.11,
+    "predicted": 157.118
+  },
+  {
+    "timestamp": "2025-01-10T22:10:00",
+    "actual": 138.49,
+    "predicted": 138.49
+  },
+  {
+    "timestamp": "2025-01-11T01:15:00",
+    "actual": 129.99,
+    "predicted": 130.042
+  },
+  {
+    "timestamp": "2025-01-11T04:30:00",
+    "actual": 109.18,
+    "predicted": 109.225
+  },
+  {
+    "timestamp": "2025-01-11T07:30:00",
+    "actual": 156.58,
+    "predicted": 156.598
+  },
+  {
+    "timestamp": "2025-01-11T10:45:00",
+    "actual": 138.99,
+    "predicted": 139.072
+  },
+  {
+    "timestamp": "2025-01-11T14:00:00",
+    "actual": 109.03,
+    "predicted": 109.076
+  },
+  {
+    "timestamp": "2025-01-11T17:05:00",
+    "actual": 130.78,
+    "predicted": 130.837
+  },
+  {
+    "timestamp": "2025-01-11T20:30:00",
+    "actual": 93.55,
+    "predicted": 93.435
+  },
+  {
+    "timestamp": "2025-01-11T23:30:00",
+    "actual": 92.71,
+    "predicted": 92.716
+  },
+  {
+    "timestamp": "2025-01-12T02:45:00",
+    "actual": 44.39,
+    "predicted": 44.544
+  },
+  {
+    "timestamp": "2025-01-12T06:00:00",
+    "actual": 115.55,
+    "predicted": 115.545
+  },
+  {
+    "timestamp": "2025-01-12T09:20:00",
+    "actual": 155.61,
+    "predicted": 155.597
+  },
+  {
+    "timestamp": "2025-01-12T12:20:00",
+    "actual": 129.49,
+    "predicted": 129.5
+  },
+  {
+    "timestamp": "2025-01-12T15:30:00",
+    "actual": 68.57,
+    "predicted": 68.487
+  },
+  {
+    "timestamp": "2025-01-12T18:45:00",
+    "actual": 143.24,
+    "predicted": 143.25
+  },
+  {
+    "timestamp": "2025-01-12T22:00:00",
+    "actual": 142.07,
+    "predicted": 142.099
+  },
+  {
+    "timestamp": "2025-01-13T01:15:00",
+    "actual": 153.09,
+    "predicted": 153.1
+  },
+  {
+    "timestamp": "2025-01-13T04:45:00",
+    "actual": 155.4,
+    "predicted": 155.413
+  },
+  {
+    "timestamp": "2025-01-13T07:55:00",
+    "actual": 112.86,
+    "predicted": 112.679
+  },
+  {
+    "timestamp": "2025-01-13T11:15:00",
+    "actual": 111.0,
+    "predicted": 111.032
+  },
+  {
+    "timestamp": "2025-01-13T14:20:00",
+    "actual": 156.33,
+    "predicted": 156.304
+  },
+  {
+    "timestamp": "2025-01-13T17:35:00",
+    "actual": 86.09,
+    "predicted": 86.147
+  },
+  {
+    "timestamp": "2025-01-13T20:45:00",
+    "actual": 104.39,
+    "predicted": 104.425
+  },
+  {
+    "timestamp": "2025-01-13T23:55:00",
+    "actual": 126.05,
+    "predicted": 126.048
+  },
+  {
+    "timestamp": "2025-01-14T03:05:00",
+    "actual": 133.05,
+    "predicted": 133.083
+  },
+  {
+    "timestamp": "2025-01-14T06:05:00",
+    "actual": 143.97,
+    "predicted": 143.976
+  },
+  {
+    "timestamp": "2025-01-14T09:25:00",
+    "actual": 150.81,
+    "predicted": 150.799
+  },
+  {
+    "timestamp": "2025-01-14T12:30:00",
+    "actual": 148.78,
+    "predicted": 148.773
+  },
+  {
+    "timestamp": "2025-01-14T15:45:00",
+    "actual": 131.17,
+    "predicted": 131.184
+  },
+  {
+    "timestamp": "2025-01-14T19:05:00",
+    "actual": 144.8,
+    "predicted": 143.908
+  },
+  {
+    "timestamp": "2025-01-14T22:15:00",
+    "actual": 158.91,
+    "predicted": 158.869
+  },
+  {
+    "timestamp": "2025-01-15T01:15:00",
+    "actual": 120.61,
+    "predicted": 120.66
+  },
+  {
+    "timestamp": "2025-01-15T04:30:00",
+    "actual": 156.74,
+    "predicted": 156.755
+  },
+  {
+    "timestamp": "2025-01-15T07:55:00",
+    "actual": 105.83,
+    "predicted": 105.877
+  },
+  {
+    "timestamp": "2025-01-15T11:10:00",
+    "actual": 90.06,
+    "predicted": 90.178
+  },
+  {
+    "timestamp": "2025-01-15T14:20:00",
+    "actual": 151.45,
+    "predicted": 151.444
+  },
+  {
+    "timestamp": "2025-01-15T17:20:00",
+    "actual": 145.71,
+    "predicted": 145.718
+  },
+  {
+    "timestamp": "2025-01-15T20:25:00",
+    "actual": 144.53,
+    "predicted": 144.565
+  },
+  {
+    "timestamp": "2025-01-15T23:35:00",
+    "actual": 158.41,
+    "predicted": 158.4
+  },
+  {
+    "timestamp": "2025-01-16T03:05:00",
+    "actual": 158.27,
+    "predicted": 158.292
+  },
+  {
+    "timestamp": "2025-01-16T06:30:00",
+    "actual": 152.09,
+    "predicted": 152.079
+  },
+  {
+    "timestamp": "2025-01-16T09:30:00",
+    "actual": 157.61,
+    "predicted": 157.634
+  },
+  {
+    "timestamp": "2025-01-16T12:45:00",
+    "actual": 148.78,
+    "predicted": 148.78
+  },
+  {
+    "timestamp": "2025-01-16T15:55:00",
+    "actual": 155.46,
+    "predicted": 155.435
+  },
+  {
+    "timestamp": "2025-01-16T19:05:00",
+    "actual": 148.95,
+    "predicted": 149.003
+  },
+  {
+    "timestamp": "2025-01-16T22:20:00",
+    "actual": 157.56,
+    "predicted": 157.564
+  },
+  {
+    "timestamp": "2025-01-17T01:30:00",
+    "actual": 131.16,
+    "predicted": 131.194
+  },
+  {
+    "timestamp": "2025-01-17T04:45:00",
+    "actual": 150.59,
+    "predicted": 150.589
+  },
+  {
+    "timestamp": "2025-01-17T07:50:00",
+    "actual": 153.04,
+    "predicted": 153.032
+  },
+  {
+    "timestamp": "2025-01-17T10:55:00",
+    "actual": 151.64,
+    "predicted": 151.648
+  },
+  {
+    "timestamp": "2025-01-17T14:05:00",
+    "actual": 77.38,
+    "predicted": 77.263
+  },
+  {
+    "timestamp": "2025-01-17T17:25:00",
+    "actual": 157.49,
+    "predicted": 157.476
+  },
+  {
+    "timestamp": "2025-01-17T20:45:00",
+    "actual": 116.38,
+    "predicted": 116.369
+  },
+  {
+    "timestamp": "2025-01-17T23:50:00",
+    "actual": 155.89,
+    "predicted": 155.902
+  },
+  {
+    "timestamp": "2025-01-18T03:15:00",
+    "actual": 158.22,
+    "predicted": 158.196
+  },
+  {
+    "timestamp": "2025-01-18T06:30:00",
+    "actual": 157.84,
+    "predicted": 157.822
+  },
+  {
+    "timestamp": "2025-01-18T10:00:00",
+    "actual": 158.99,
+    "predicted": 159.024
+  },
+  {
+    "timestamp": "2025-01-18T13:10:00",
+    "actual": 132.31,
+    "predicted": 132.275
+  },
+  {
+    "timestamp": "2025-01-18T16:40:00",
+    "actual": 132.01,
+    "predicted": 131.985
+  },
+  {
+    "timestamp": "2025-01-18T19:55:00",
+    "actual": 132.36,
+    "predicted": 132.397
+  },
+  {
+    "timestamp": "2025-01-18T23:05:00",
+    "actual": 146.62,
+    "predicted": 146.607
+  },
+  {
+    "timestamp": "2025-01-19T02:10:00",
+    "actual": 156.39,
+    "predicted": 156.414
+  },
+  {
+    "timestamp": "2025-01-19T05:20:00",
+    "actual": 143.57,
+    "predicted": 144.366
+  },
+  {
+    "timestamp": "2025-01-19T08:40:00",
+    "actual": 158.88,
+    "predicted": 158.85
+  },
+  {
+    "timestamp": "2025-01-19T12:15:00",
+    "actual": 152.77,
+    "predicted": 152.767
+  },
+  {
+    "timestamp": "2025-01-19T15:35:00",
+    "actual": 117.33,
+    "predicted": 117.326
+  },
+  {
+    "timestamp": "2025-01-19T18:40:00",
+    "actual": 154.77,
+    "predicted": 154.743
+  },
+  {
+    "timestamp": "2025-01-19T21:40:00",
+    "actual": 133.16,
+    "predicted": 133.154
+  },
+  {
+    "timestamp": "2025-01-20T00:55:00",
+    "actual": 135.19,
+    "predicted": 135.178
+  },
+  {
+    "timestamp": "2025-01-20T04:10:00",
+    "actual": 116.1,
+    "predicted": 116.104
+  },
+  {
+    "timestamp": "2025-01-20T07:15:00",
+    "actual": 132.57,
+    "predicted": 132.551
+  },
+  {
+    "timestamp": "2025-01-20T10:40:00",
+    "actual": 146.39,
+    "predicted": 146.39
+  },
+  {
+    "timestamp": "2025-01-20T13:55:00",
+    "actual": 92.14,
+    "predicted": 92.17
+  },
+  {
+    "timestamp": "2025-01-20T17:05:00",
+    "actual": 146.94,
+    "predicted": 147.032
+  },
+  {
+    "timestamp": "2025-01-20T20:15:00",
+    "actual": 144.78,
+    "predicted": 144.77
+  },
+  {
+    "timestamp": "2025-01-20T23:40:00",
+    "actual": 125.36,
+    "predicted": 125.352
+  },
+  {
+    "timestamp": "2025-01-21T02:45:00",
+    "actual": 113.65,
+    "predicted": 113.606
+  },
+  {
+    "timestamp": "2025-01-21T05:50:00",
+    "actual": 157.57,
+    "predicted": 157.587
+  },
+  {
+    "timestamp": "2025-01-21T08:55:00",
+    "actual": 106.6,
+    "predicted": 106.645
+  },
+  {
+    "timestamp": "2025-01-21T12:10:00",
+    "actual": 149.69,
+    "predicted": 149.691
+  },
+  {
+    "timestamp": "2025-01-21T15:30:00",
+    "actual": 97.31,
+    "predicted": 97.325
+  },
+  {
+    "timestamp": "2025-01-21T18:40:00",
+    "actual": 146.33,
+    "predicted": 146.44
+  },
+  {
+    "timestamp": "2025-01-21T22:00:00",
+    "actual": 144.26,
+    "predicted": 144.236
+  },
+  {
+    "timestamp": "2025-01-22T01:05:00",
+    "actual": 106.24,
+    "predicted": 106.352
+  },
+  {
+    "timestamp": "2025-01-22T04:10:00",
+    "actual": 117.55,
+    "predicted": 117.563
+  },
+  {
+    "timestamp": "2025-01-22T07:45:00",
+    "actual": 76.41,
+    "predicted": 76.444
+  },
+  {
+    "timestamp": "2025-01-22T10:50:00",
+    "actual": 95.36,
+    "predicted": 95.299
+  },
+  {
+    "timestamp": "2025-01-22T14:00:00",
+    "actual": 126.42,
+    "predicted": 126.416
+  },
+  {
+    "timestamp": "2025-01-22T17:25:00",
+    "actual": 86.97,
+    "predicted": 87.0
+  }
+]
