@@ -548,6 +548,179 @@ def analytics_summary(start: str | None = None, end: str | None = None) -> dict[
             "measurements": summary, "screening_thresholds": SCREENING_THRESHOLDS}
 
 
+def _conversational_knowledge(normalized: str, params: RoomParams) -> dict[str, Any] | None:
+    """Provide concise, accurate, domain-specific and conversational answers without unnecessary fluff."""
+    # 1. Polite greetings & "How are you"
+    if re.search(r"\b(how are you|how do you do|how's it going|how are things|how are you doing)\b", normalized):
+        return {
+            "answer": "I'm doing well, thank you! I'm here to help you monitor your airspace, explain sensor metrics, and suggest proactive ventilation actions. How can I assist you today?",
+            "provider": "rule_based",
+            "intent": "greeting",
+        }
+
+    # 2. Gratitude
+    if re.search(r"\b(thank you|thanks|much appreciated|appreciate it|thx|thank u)\b", normalized):
+        return {
+            "answer": "You're very welcome! Feel free to ask whenever you need more insights into your room conditions or air quality trends.",
+            "provider": "rule_based",
+            "intent": "general",
+        }
+
+    # 3. Goodbyes
+    if re.search(r"\b(bye|goodbye|see you|take care|have a good (day|night|evening)|cya)\b", normalized):
+        return {
+            "answer": "Goodbye! Stay comfortable, breathe clean air, and check back anytime you need an environmental checkup.",
+            "provider": "rule_based",
+            "intent": "general",
+        }
+
+    # 4. Identity & Creator
+    if re.search(r"\b(who (made|created|built|designed|developed) you|who is your creator|who are your developers|who created airmind)\b", normalized):
+        return {
+            "answer": "I was developed for the AirMind AI project by Adithi Mandhala. My purpose is to combine IoT telemetry, explainable machine learning, and proactive forecasting to help you maintain healthy indoor environments.",
+            "provider": "rule_based",
+            "intent": "general",
+        }
+
+    if re.search(r"\b(who are you|what are you)\b", normalized) and "airmind" not in normalized:
+        return {
+            "answer": "I am the AirMind AI Advisor. I help you monitor room air quality, explain sensor readings, diagnose elevated pollutants using SHAP, and forecast future air conditions.",
+            "provider": "rule_based",
+            "intent": "general",
+        }
+
+    if re.search(r"\b(what can you do|help me|how to use you|what are your features)\b", normalized):
+        return {
+            "answer": "I can help you: 1) Check real-time sensor levels, 2) Explain elevated readings using SHAP feature attributions, 3) Recommend proactive ventilation actions, 4) Answer air science questions (like PM2.5, CO2, and TVOCs), and 5) Chat about everyday air quality tips. Just ask!",
+            "provider": "rule_based",
+            "intent": "general",
+        }
+
+    # 5. Humor & Casual
+    if re.search(r"\b(joke|funny|make me laugh|humor)\b", normalized):
+        return {
+            "answer": "Why did the air purifier break up with the vacuum cleaner? Because their relationship was just collecting dust, and it really needed some fresh space!",
+            "provider": "rule_based",
+            "intent": "general",
+        }
+
+    if re.search(r"\b(poem|rhyme|poetry)\b", normalized):
+        return {
+            "answer": "Invisible streams through the quiet room flow,\nSensors awaken and watch as they go.\nA breath of fresh air when the windows align,\nAirMind keeps focus and clarity fine.",
+            "provider": "rule_based",
+            "intent": "general",
+        }
+
+    # 6. Environmental & Sensor Science Q&A (when not asking for current reading)
+    if re.search(r"\b(what is pm2\.5|what is pm 2\.5|what are pm2\.5|what are fine particles|explain pm2\.5)\b", normalized):
+        return {
+            "answer": "PM2.5 refers to fine inhalable particles 2.5 micrometers or smaller (about 30 times finer than a human hair). Because they penetrate deep into the lungs and bloodstream, health screening thresholds recommend keeping indoor levels below 12 ug/m3.",
+            "provider": "rule_based",
+            "intent": "general",
+        }
+
+    if re.search(r"\b(what is pm10|what are pm10|what is dust|explain pm10)\b", normalized):
+        return {
+            "answer": "PM10 refers to inhalable particles up to 10 micrometers in diameter, including coarse dust, pollen, and mold spores. They irritate the eyes, nose, and respiratory tract. Keeping indoor levels below 50 ug/m3 minimizes irritation.",
+            "provider": "rule_based",
+            "intent": "general",
+        }
+
+    if re.search(r"\b(what is co2|what is carbon dioxide|why is co2 (bad|harmful|dangerous)|effects of co2)\b", normalized):
+        return {
+            "answer": "Carbon dioxide (CO2) is exhaled naturally by humans. In enclosed spaces without adequate ventilation, CO2 builds up. Concentrations below 800 ppm are ideal for focus; 1,000 to 1,500 ppm cause drowsiness and reduced productivity; and levels above 2,000 ppm can trigger headaches.",
+            "provider": "rule_based",
+            "intent": "general",
+        }
+
+    if re.search(r"\b(what is tvoc|what are tvocs|what are vocs|what is voc|volatile organic)\b", normalized):
+        return {
+            "answer": "Total Volatile Organic Compounds (TVOCs) are chemical gases emitted by cleaning sprays, paints, perfumes, disinfectants, adhesives, and new furniture off-gassing. Keeping them under 220-400 ppb prevents eye, throat, and respiratory irritation.",
+            "provider": "rule_based",
+            "intent": "general",
+        }
+
+    if re.search(r"\b(what is co|what is carbon monoxide|why is carbon monoxide (dangerous|bad))\b", normalized):
+        return {
+            "answer": "Carbon monoxide (CO) is a dangerous, colorless, and odorless toxic gas produced by incomplete combustion (furnaces, stoves, vehicle exhaust). Any reading above 9 ppm warrants investigation, and readings at or above 35 ppm require immediate evacuation.",
+            "provider": "rule_based",
+            "intent": "general",
+        }
+
+    if re.search(r"\b(plants|houseplants|do plants (clean|purify|help))\b", normalized):
+        return {
+            "answer": "While indoor plants (like snake plants and peace lilies) add aesthetic value and minor humidity, peer-reviewed building studies show their air-cleaning rate in realistic rooms is negligible compared to simple fresh air ventilation or a true HEPA purifier.",
+            "provider": "rule_based",
+            "intent": "general",
+        }
+
+    if re.search(r"\b(ideal humidity|best humidity|normal humidity|good humidity)\b", normalized):
+        return {
+            "answer": "The ideal indoor relative humidity is between 30% and 50% (and up to 60%). Humidity below 30% dries out airways and eyes, while humidity above 60% encourages dust mite proliferation and mold growth.",
+            "provider": "rule_based",
+            "intent": "general",
+        }
+
+    if re.search(r"\b(hepa|air purifier|air filter|how do air purifiers work)\b", normalized):
+        return {
+            "answer": "True HEPA (High-Efficiency Particulate Air) filters mechanically capture at least 99.97% of airborne particles down to 0.3 microns, making them excellent for PM2.5, smoke, and pollen. For gaseous VOCs and odors, pair them with activated carbon.",
+            "provider": "rule_based",
+            "intent": "general",
+        }
+
+    if re.search(r"\b(how to improve air|how can i clean air|tips for clean air|naturally clean air)\b", normalized):
+        return {
+            "answer": "Key strategies: 1) Increase outdoor air ventilation when weather allows, 2) Use a HEPA purifier in occupied rooms, 3) Avoid aerosol sprays, scented candles, and harsh chemical cleaners, 4) Keep humidity between 30-50%, and 5) Clean surfaces with damp microfiber cloths.",
+            "provider": "rule_based",
+            "intent": "general",
+        }
+
+    # 7. Machine Learning / AI Education
+    if re.search(r"\b(what is random forest|how does random forest work|why random forest)\b", normalized):
+        return {
+            "answer": "Random Forest is an ensemble machine learning model that trains multiple decision trees on random subsets of data and features. Their predictions are averaged, which prevents overfitting and accurately models complex non-linear relationships.",
+            "provider": "rule_based",
+            "intent": "general",
+        }
+
+    if re.search(r"\b(what is shap|explain shap|what does shap mean|how does shap work)\b", normalized):
+        return {
+            "answer": "SHAP (SHapley Additive exPlanations) uses game theory to explain machine learning predictions. It calculates the exact numerical contribution of each feature (e.g. CO2 or PM2.5) in raising or lowering the model output compared to the average baseline.",
+            "provider": "rule_based",
+            "intent": "general",
+        }
+
+    if re.search(r"\b(what is the proxy|what is custom proxy|is this aqi|difference between aqi and proxy)\b", normalized):
+        return {
+            "answer": "Our custom proxy is an instantaneous indoor screening index from 0 to 200, calculated as the maximum sub-index across PM2.5, CO2, TVOC, and CO. Unlike regulatory EPA AQI which requires 24-hour outdoor rolling averages, our proxy gives instantaneous indoor feedback.",
+            "provider": "rule_based",
+            "intent": "general",
+        }
+
+    if re.search(r"\b(what is forecasting|how does the forecast work|proactive forecast)\b", normalized):
+        return {
+            "answer": "Our proactive forecasting engine models mass-balance physical accumulation and decay of CO2, PM2.5, and TVOC over a 2-hour forward horizon based on occupancy and ventilation, evaluating each time-step through the Random Forest model to warn of threshold breaches in advance.",
+            "provider": "rule_based",
+            "intent": "general",
+        }
+
+    # 8. Room Overview & Status Check
+    if re.search(r"\b(how is (my|the) (room|air)|is (my|the) air (good|clean|healthy|safe)|room (summary|status)|current status)\b", normalized):
+        vent_state = "Open" if getattr(params, "ventilation_enc", 0) == 1 else "Closed"
+        co2_val = getattr(params, "co2", 700)
+        pm_val = getattr(params, "pm25", 35)
+        co2_status = "Elevated" if co2_val >= 800 else "Normal"
+        pm_status = "Elevated" if pm_val >= 12 else "Normal"
+        advice = "Opening ventilation is recommended to prevent accumulation." if vent_state == "Closed" and (co2_val >= 800 or pm_val >= 12) else "Conditions are currently within standard ranges."
+        return {
+            "answer": f"Room status: CO2 is {co2_val} ppm ({co2_status}), PM2.5 is {pm_val} ug/m3 ({pm_status}), and ventilation is {vent_state}. {advice}",
+            "provider": "rule_based",
+            "intent": "general",
+        }
+
+    return None
+
+
 @app.post("/advisor")
 def advisor(request: AdvisorRequest) -> dict[str, Any]:
     question = request.question.strip()
@@ -660,6 +833,11 @@ def advisor(request: AdvisorRequest) -> dict[str, Any]:
         item = recommendations[0]
         return {"answer": f"The highest-priority project screen is {item['condition']} at {item['observed']} {item['unit']}: {item['reason']} {item['action']}", "provider": "rule_based", "intent": "recommendation", "recommendation": item}
 
+    # Check conversational knowledge base for direct, helpful answers
+    conv_match = _conversational_knowledge(normalized, params)
+    if conv_match:
+        return conv_match
+
     context: dict[str, Any] = {}
     if re.search(r"\b(proxy|prediction|predicted|model estimate|random forest)\b", normalized):
         context = {"calculated_custom_proxy": calculate_indoor_proxy(params.pm25, params.co2, params.tvoc, params.co),
@@ -667,9 +845,27 @@ def advisor(request: AdvisorRequest) -> dict[str, Any]:
     elif re.search(r"\b(shap|contribution|feature effect)\b", normalized):
         context = {"contributions": _explain(params).get("contributions", [])[:3], "note": "Attribution describes the model, not causation."}
 
-    messages: list[dict[str, str]] = [{"role": "system", "content": "You are AirMind AI, a concise and natural assistant for an indoor environmental intelligence project. Answer the user's actual question; do not prepend an air-quality report. Use only supplied context for specific readings. The project's target is a custom proxy, not regulatory AQI. Do not claim hardware control or that SHAP proves causation. If the question is unrelated or context is absent, answer conversationally without inventing sensor facts."}]
+    # Rich room snapshot for OpenAI if configured
+    room_snapshot = {
+        "co2_ppm": params.co2, "pm25_ug_m3": params.pm25, "tvoc_ppb": params.tvoc, "co_ppm": params.co,
+        "temperature_c": params.temperature, "humidity_pct": params.humidity, "occupancy": params.occupancy,
+        "ventilation": "open" if params.ventilation_enc else "closed",
+        "calculated_proxy": calculate_indoor_proxy(params.pm25, params.co2, params.tvoc, params.co),
+    }
+
+    system_content = (
+        "You are AirMind AI, an intelligent, concise, and friendly indoor environmental advisor. "
+        "You can answer general questions, chat warmly with users, and discuss air quality, science, "
+        "and health. When answering, be concise, direct, and user-friendly; avoid unnecessary disclaimers or repetitive boilerplate. "
+        "If asked about current room conditions, refer to the room context accurately. "
+        "The project's target is a custom indoor proxy (0-200), not regulatory 24h outdoor AQI."
+    )
+    messages: list[dict[str, str]] = [
+        {"role": "system", "content": system_content},
+        {"role": "system", "content": f"Current Room Telemetry: {json.dumps(room_snapshot, separators=(',', ':'))}"}
+    ]
     if context:
-        messages.append({"role": "system", "content": f"Relevant context for this question only: {json.dumps(context, separators=(',', ':'))}"})
+        messages.append({"role": "system", "content": f"Relevant context for this question: {json.dumps(context, separators=(',', ':'))}"})
     messages.extend({"role": turn.role, "content": turn.content} for turn in request.history[-8:])
     messages.append({"role": "user", "content": question})
 
@@ -689,8 +885,8 @@ def advisor(request: AdvisorRequest) -> dict[str, Any]:
         direction = "raises" if strongest["contribution"] > 0 else "lowers"
         return {"answer": f"The largest local SHAP attribution is {strongest['feature']}; it {direction} this model estimate by {abs(strongest['contribution']):.3f} proxy points relative to the baseline. This describes the model, not cause and effect.", "provider": "rule_based", "intent": "explanation"}
     if request.history:
-        return {"answer": "I can follow up on the previous AirMind question. Could you point me to the reading or part of the explanation you mean?", "provider": "rule_based", "intent": "follow_up"}
-    return {"answer": "I can help with AirMind AI, a sensor reading, the model's proxy estimate, or practical guidance based on the current inputs. What would you like to explore?", "provider": "rule_based", "intent": "general"}
+        return {"answer": "I'm following up on our conversation. Could you clarify which reading, sensor, or recommendation you'd like to explore further?", "provider": "rule_based", "intent": "follow_up"}
+    return {"answer": "I'm here to help with your indoor air quality, sensor readings, and environmental guidance. What would you like to explore about your room or air quality?", "provider": "rule_based", "intent": "general"}
 
 
 @app.post("/session")

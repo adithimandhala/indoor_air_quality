@@ -38,6 +38,10 @@ import {
   ShieldCheck,
   Zap,
   Clock,
+  Copy,
+  Check,
+  Sparkles,
+  MessageSquare,
 } from "lucide-react";
 import { api, postJSON, API_BASE } from "./api.js";
 import { useAirMind } from "./AppContext.jsx";
@@ -1281,18 +1285,20 @@ export function ExplainabilityPage() {
    PAGE 5: AI ADVISOR
    ========================================================================= */
 export function AdvisorPage() {
-  const { params, dataSource, error, retry } = useAirMind();
+  const { params, dataSource, health, prediction, error, retry } = useAirMind();
 
   const [messages, setMessages] = useState([
     {
       role: "assistant",
-      text: "Hello! I am AirMind AI, your indoor environmental intelligence advisor. Ask me about your current sensor readings, project proxy scores, or recommended actions.",
+      text: "Hello! I am AirMind AI, your intelligent environmental advisor. Ask me about your room's air quality, sensor levels, ML explanations (SHAP), or air science. You can also chat with me naturally!",
       provider: "system",
     },
   ]);
   const [question, setQuestion] = useState("");
   const [busy, setBusy] = useState(false);
   const [localError, setLocalError] = useState("");
+  const [activeCategory, setActiveCategory] = useState("status");
+  const [copiedIdx, setCopiedIdx] = useState(null);
 
   const chatEndRef = useRef(null);
 
@@ -1300,11 +1306,50 @@ export function AdvisorPage() {
     chatEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages, busy]);
 
-  const suggestionPrompts = [
-    "What is AirMind AI?",
-    "What is my current CO2 reading?",
-    "What should I do about the current readings?",
-    "Why might my air quality be poor?",
+  const TOPIC_CATEGORIES = [
+    {
+      id: "status",
+      label: "Room Status",
+      icon: Zap,
+      prompts: [
+        "How is my room air right now?",
+        "What is my current CO2 reading?",
+        "What should I do about the current readings?",
+      ],
+    },
+    {
+      id: "science",
+      label: "Air Science",
+      icon: Wind,
+      prompts: [
+        "What is PM2.5?",
+        "What are TVOCs?",
+        "Do plants clean indoor air?",
+        "How to improve air naturally?",
+      ],
+    },
+    {
+      id: "ai",
+      label: "AI & Model",
+      icon: Sparkles,
+      prompts: [
+        "What is AirMind AI?",
+        "Why might my air quality be poor?",
+        "How does random forest work?",
+        "What is SHAP?",
+      ],
+    },
+    {
+      id: "chat",
+      label: "Human Chat",
+      icon: MessageSquare,
+      prompts: [
+        "How are you today?",
+        "Who created you?",
+        "Tell me a joke",
+        "Thank you so much!",
+      ],
+    },
   ];
 
   const send = async (textToSend) => {
@@ -1342,6 +1387,14 @@ export function AdvisorPage() {
     }
   };
 
+  const copyMessage = (text, idx) => {
+    if (navigator?.clipboard?.writeText) {
+      navigator.clipboard.writeText(text);
+      setCopiedIdx(idx);
+      setTimeout(() => setCopiedIdx(null), 2000);
+    }
+  };
+
   const clearChat = () => {
     setMessages([
       {
@@ -1352,16 +1405,43 @@ export function AdvisorPage() {
     ]);
   };
 
+  const currentCategory = TOPIC_CATEGORIES.find((c) => c.id === activeCategory) || TOPIC_CATEGORIES[0];
+
   return (
     <div className="page-stack">
       <BackendErrorBanner error={error} onRetry={retry} />
       <PageTitle
         eyebrow="NATURAL LANGUAGE ASSISTANT"
         title="AI Advisor"
-        summary="Ask questions about your indoor airspace, current readings, and model explanations."
+        summary="Ask questions about your indoor airspace, current readings, air science, or chat naturally with clean, efficient answers."
       />
 
       <div className="panel advisor-chat-panel">
+        {/* Telemetry Snapshot Banner */}
+        <div className="advisor-telemetry-banner">
+          <div className="advisor-telemetry-chip">
+            <span className="chip-label">Room CO₂:</span>
+            <span className={`chip-value ${params.co2 >= 800 ? "warn" : ""}`}>{params.co2} ppm</span>
+          </div>
+          <div className="advisor-telemetry-chip">
+            <span className="chip-label">PM2.5:</span>
+            <span className={`chip-value ${params.pm25 >= 12 ? "warn" : ""}`}>{params.pm25} µg/m³</span>
+          </div>
+          <div className="advisor-telemetry-chip">
+            <span className="chip-label">Ventilation:</span>
+            <span className="chip-value">{params.ventilation_enc ? "Open" : "Closed"}</span>
+          </div>
+          <div className="advisor-telemetry-chip">
+            <span className="chip-label">RF Proxy:</span>
+            <span className="chip-value highlight">{prediction?.prediction ?? "—"} pts</span>
+          </div>
+          <div className="advisor-telemetry-chip engine-chip">
+            <span className="engine-dot" />
+            <span>{health?.openai?.configured ? "AI Mode (OpenAI)" : "AirMind Knowledge Engine"}</span>
+          </div>
+        </div>
+
+        {/* Chat Stream Window */}
         <div className="chat-window" aria-live="polite">
           {messages.map((m, idx) => (
             <div key={idx} className={`chat-bubble-wrap ${m.role}`}>
@@ -1370,15 +1450,28 @@ export function AdvisorPage() {
               </div>
               <div className={`chat-bubble ${m.role} ${m.isError ? "chat-error" : ""}`}>
                 <p className="bubble-text">{m.text}</p>
-                {m.provider && (
-                  <span className="bubble-provider">
-                    {m.provider === "openai"
-                      ? "OpenAI Response"
-                      : m.provider === "rule_based"
-                      ? "AirMind Rule-Based Engine"
-                      : "System"}
-                  </span>
-                )}
+                <div className="bubble-footer">
+                  {m.provider && (
+                    <span className="bubble-provider">
+                      {m.provider === "openai"
+                        ? "OpenAI Response"
+                        : m.provider === "rule_based"
+                        ? "AirMind Expert Engine"
+                        : "System"}
+                    </span>
+                  )}
+                  {m.role === "assistant" && !m.isError && (
+                    <button
+                      type="button"
+                      className="copy-bubble-btn"
+                      onClick={() => copyMessage(m.text, idx)}
+                      title="Copy response to clipboard"
+                    >
+                      {copiedIdx === idx ? <Check size={12} color="#2ee6d6" /> : <Copy size={12} />}
+                      <span>{copiedIdx === idx ? "Copied" : "Copy"}</span>
+                    </button>
+                  )}
+                </div>
               </div>
             </div>
           ))}
@@ -1397,19 +1490,38 @@ export function AdvisorPage() {
           <div ref={chatEndRef} />
         </div>
 
-        {/* Suggestion Chips */}
-        <div className="suggestion-chips-row">
-          <span className="chips-hint">Suggested:</span>
-          {suggestionPrompts.map((prompt) => (
-            <button
-              key={prompt}
-              className="chip-btn"
-              onClick={() => send(prompt)}
-              disabled={busy}
-            >
-              {prompt}
-            </button>
-          ))}
+        {/* Categorized Suggestion System */}
+        <div className="advisor-suggestions-container">
+          <div className="advisor-category-tabs">
+            {TOPIC_CATEGORIES.map((cat) => {
+              const IconComp = cat.icon;
+              const isActive = cat.id === activeCategory;
+              return (
+                <button
+                  key={cat.id}
+                  type="button"
+                  className={`category-tab-btn ${isActive ? "active" : ""}`}
+                  onClick={() => setActiveCategory(cat.id)}
+                >
+                  <IconComp size={13} />
+                  <span>{cat.label}</span>
+                </button>
+              );
+            })}
+          </div>
+
+          <div className="suggestion-chips-row">
+            {currentCategory.prompts.map((prompt) => (
+              <button
+                key={prompt}
+                className="chip-btn"
+                onClick={() => send(prompt)}
+                disabled={busy}
+              >
+                {prompt}
+              </button>
+            ))}
+          </div>
         </div>
 
         {/* Input Bar */}
@@ -1433,7 +1545,13 @@ export function AdvisorPage() {
             className="chat-input"
             value={question}
             onChange={(e) => setQuestion(e.target.value)}
-            placeholder="Ask about your indoor airspace, readings, or recommendations..."
+            onKeyDown={(e) => {
+              if (e.key === "Enter" && !e.shiftKey) {
+                e.preventDefault();
+                send();
+              }
+            }}
+            placeholder="Ask about readings, science, ventilation, or chat naturally..."
             maxLength={1200}
             disabled={busy}
           />
