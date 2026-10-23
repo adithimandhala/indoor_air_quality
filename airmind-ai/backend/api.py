@@ -101,6 +101,11 @@ class SessionRequest(BaseModel):
     result: dict[str, Any]
 
 
+class ForecastRequest(BaseModel):
+    params: RoomParams
+    horizon_minutes: int = Field(default=120, ge=15, le=240)
+
+
 class ReportRequest(BaseModel):
     params: RoomParams
     data_source: Literal["simulated", "historical"]
@@ -308,6 +313,168 @@ def optimize(params: RoomParams) -> dict[str, Any]:
     return {"mode": "hypothetical_scenario_simulation", "hardware_connected": False,
             "baseline_predicted_proxy": baseline, "scenarios": scenarios,
             "notice": "Scenario outputs are model simulations under stated assumptions; they are not measured outcomes or guaranteed benefits."}
+
+
+def _compute_trajectory(params_dict: dict[str, Any], open_ventilation: bool, horizon_minutes: int = 120, step_minutes: int = 15) -> list[dict[str, Any]]:
+    points = []
+    co2 = float(params_dict["co2"])
+    pm25 = float(params_dict["pm25"])
+    tvoc = float(params_dict["tvoc"])
+    co = float(params_dict["co"])
+    temp = float(params_dict["temperature"])
+    occ = float(params_dict["occupancy"])
+    base_hour = int(params_dict["hour"])
+
+    co2_outdoor = 410.0
+    tvoc_outdoor = 45.0
+    pm25_outdoor = 8.0
+
+    steps = [0, 15, 30, 45, 60, 90, 120] if horizon_minutes <= 120 else list(range(0, horizon_minutes + 1, step_minutes))
+
+    for t_min in steps:
+        frac_hour = t_min / 60.0
+        cur_hour = int((base_hour + int(frac_hour)) % 24)
+        is_work = 1 if 8 <= cur_hour <= 18 else 0
+
+        if open_ventilation:
+            decay = float(np.exp(-0.035 * t_min))
+            co2_t = float(co2_outdoor + (co2 - co2_outdoor) * decay + occ * 3.5 * (1.0 - decay))
+            tvoc_t = float(tvoc_outdoor + (tvoc - tvoc_outdoor) * decay)
+            pm25_t = float(pm25_outdoor + (pm25 - pm25_outdoor) * decay)
+            temp_t = float(temp - (temp - 22.0) * (1.0 - decay) * 0.4)
+            vent_enc = 1
+        else:
+            co2_gain = float(occ * 0.28 * t_min)
+            co2_t = float(min(2500.0, co2 + co2_gain))
+            tvoc_gain = float(0.35 * t_min if occ > 0 else 0.05 * t_min)
+            tvoc_t = float(min(1200.0, tvoc + tvoc_gain))
+            pm25_gain = float(0.04 * t_min if occ > 5 else 0.0)
+            pm25_t = float(min(150.0, pm25 + pm25_gain))
+            temp_t = float(min(32.0, temp + (occ * 0.005 * t_min)))
+            vent_enc = 0
+
+        step_dict = {
+            **params_dict,
+            "temperature": round(temp_t, 2),
+            "co2": round(co2_t, 1),
+            "pm25": round(pm25_t, 1),
+            "tvoc": round(tvoc_t, 1),
+            "hour": cur_hour,
+            "is_working_hours": is_work,
+            "ventilation_enc": vent_enc,
+        }
+
+        proxy_calc = calculate_indoor_proxy(step_dict["pm25"], step_dict["co2"], step_dict["tvoc"], step_dict["co"])
+        pred_rf = _predict(step_dict)
+
+        points.append({
+            "time_offset_min": t_min,
+            "time_label": f"+{t_min}m" if t_min > 0 else "Now",
+            "hour": cur_hour,
+            "co2": round(co2_t, 1),
+            "pm25": round(pm25_t, 1),
+            "tvoc": round(tvoc_t, 1),
+            "temperature": round(temp_t, 2),
+            "proxy_calculated": proxy_calc,
+            "predicted_proxy": pred_rf,
+            "proxy_band": _band(pred_rf),
+        })
+    return points
+
+
+def _detect_breaches(current_params: dict[str, Any], baseline_points: list[dict[str, Any]]) -> dict[str, Any]:
+    alerts = []
+    earliest_breach_min = None
+    co2_elev = SCREENING_THRESHOLDS["co2"]["elevated"]
+    co2_high = SCREENING_THRESHOLDS["co2"]["high"]
+    co2_curr = current_params["co2"]
+
+    if co2_curr >= co2_high:
+        alerts.append({
+            "severity": "urgent",
+            "parameter": "CO2",
+            "threshold_val": co2_high,
+            "threshold_label": "High Screening (1,000 ppm)",
+            "breach_time_min": 0,
+            "message": f"CO2 is currently at {co2_curr:g} ppm, exceeding the high screening threshold.",
+            "action": "Immediate ventilation or room air exchange required."
+        })
+        earliest_breach_min = 0
+    elif co2_curr >= co2_elev:
+        alerts.append({
+            "severity": "high",
+            "parameter": "CO2",
+            "threshold_val": co2_elev,
+            "threshold_label": "Elevated Screening (800 ppm)",
+            "breach_time_min": 0,
+            "message": f"CO2 is currently at {co2_curr:g} ppm, exceeding the elevated screening threshold.",
+            "action": "Increase outdoor-air ventilation to prevent escalation."
+        })
+        earliest_breach_min = 0
+    else:
+        for i in range(len(baseline_points) - 1):
+            p1 = baseline_points[i]
+            p2 = baseline_points[i + 1]
+            if p1["co2"] < co2_elev <= p2["co2"]:
+                diff = max(1.0, p2["co2"] - p1["co2"])
+                frac = (co2_elev - p1["co2"]) / diff
+                minute = int(round(p1["time_offset_min"] + frac * (p2["time_offset_min"] - p1["time_offset_min"])))
+                alerts.append({
+                    "severity": "high",
+                    "parameter": "CO2",
+                    "threshold_val": co2_elev,
+                    "threshold_label": "Elevated Screening (800 ppm)",
+                    "breach_time_min": minute,
+                    "message": f"At current occupancy ({current_params['occupancy']} people), CO2 is projected to breach the 800 ppm screening threshold in ~{minute} minutes.",
+                    "action": f"Open ventilation before T+{minute}m to prevent air degradation."
+                })
+                if earliest_breach_min is None or minute < earliest_breach_min:
+                    earliest_breach_min = minute
+                break
+
+    pm25_elev = SCREENING_THRESHOLDS["pm25"]["elevated"]
+    pm25_curr = current_params["pm25"]
+    if pm25_curr >= pm25_elev:
+        alerts.append({
+            "severity": "medium",
+            "parameter": "PM2.5",
+            "threshold_val": pm25_elev,
+            "threshold_label": "Elevated Particles (12 µg/m³)",
+            "breach_time_min": 0,
+            "message": f"PM2.5 particles are at {pm25_curr:g} µg/m³, above the elevated screening threshold.",
+            "action": "Ensure filtration or reduce particle-generating activity."
+        })
+
+    return {
+        "earliest_breach_min": earliest_breach_min,
+        "alerts": alerts,
+        "is_breach_projected": earliest_breach_min is not None,
+    }
+
+
+@app.post("/forecast")
+def forecast(request: ForecastRequest) -> dict[str, Any]:
+    values = request.params.model_dump()
+    horizon = request.horizon_minutes
+    current_vent = bool(values["ventilation_enc"])
+
+    baseline_pts = _compute_trajectory(values, open_ventilation=current_vent, horizon_minutes=horizon)
+    preventative_pts = _compute_trajectory(values, open_ventilation=True, horizon_minutes=horizon)
+
+    breach_analysis = _detect_breaches(values, baseline_pts)
+    curr_rf = _predict(values)
+
+    return {
+        "mode": "proactive_air_quality_forecasting",
+        "horizon_minutes": horizon,
+        "current_prediction": curr_rf,
+        "current_occupancy": values["occupancy"],
+        "ventilation_status": "Open" if current_vent else "Closed",
+        "baseline_trajectory": baseline_pts,
+        "preventative_trajectory": preventative_pts,
+        "breach_analysis": breach_analysis,
+        "notice": "Physics-informed indoor mass-balance trajectory evaluated through the trained Random Forest model; software projection, not guaranteed."
+    }
 
 
 @app.get("/records/random")

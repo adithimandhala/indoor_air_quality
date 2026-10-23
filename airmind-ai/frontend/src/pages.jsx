@@ -34,6 +34,10 @@ import {
   Info,
   ChevronDown,
   Trash2,
+  ShieldAlert,
+  ShieldCheck,
+  Zap,
+  Clock,
 } from "lucide-react";
 import { api, postJSON, API_BASE } from "./api.js";
 import { useAirMind } from "./AppContext.jsx";
@@ -322,6 +326,224 @@ export function AirQualityPage() {
 /* =========================================================================
    PAGE 2: PREDICTIONS
    ========================================================================= */
+function ProactiveForecastCard({ forecast, params, updateParam }) {
+  const [showPreventative, setShowPreventative] = useState(true);
+
+  if (!forecast) {
+    return (
+      <div className="panel pred-forecast-card">
+        <div className="panel-head">
+          <div>
+            <h3>Proactive Air Quality Forecast</h3>
+            <p>Evaluating 2-hour trajectory through the Random Forest model...</p>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  const { baseline_trajectory = [], preventative_trajectory = [], breach_analysis = {} } = forecast;
+  const { is_breach_projected, earliest_breach_min, alerts = [] } = breach_analysis;
+  const isVentOpen = Boolean(params.ventilation_enc);
+
+  const chartData = baseline_trajectory.map((pt, idx) => {
+    const prev = preventative_trajectory[idx] || {};
+    return {
+      time: pt.time_label,
+      time_offset: pt.time_offset_min,
+      status_quo_proxy: pt.predicted_proxy,
+      preventative_proxy: prev.predicted_proxy,
+      co2_projected: pt.co2,
+      co2_preventative: prev.co2,
+      pm25_projected: pt.pm25,
+      temperature: pt.temperature,
+    };
+  });
+
+  return (
+    <div className="panel pred-forecast-card">
+      <div className="panel-head">
+        <div>
+          <div className="flex-row items-center gap-2">
+            <h3>Proactive Air Quality Forecast (120m Horizon)</h3>
+            <span className="honest-pill">Physics-Informed RF Projection</span>
+          </div>
+          <p>
+            Dynamic indoor mass-balance trajectory continuously evaluated by the Random Forest model.
+          </p>
+        </div>
+        <div className="flex-row items-center gap-2">
+          <label className="forecast-toggle-label">
+            <input
+              type="checkbox"
+              checked={showPreventative}
+              onChange={(e) => setShowPreventative(e.target.checked)}
+            />
+            <span>Show Preventative Curve</span>
+          </label>
+        </div>
+      </div>
+
+      {/* Breach Alert / Safety Banner */}
+      {is_breach_projected && earliest_breach_min != null ? (
+        <div className={`forecast-alert-banner ${earliest_breach_min === 0 ? "active-breach" : "imminent-breach"}`}>
+          <div className="fab-icon-wrap">
+            <ShieldAlert size={22} className={earliest_breach_min === 0 ? "text-red" : "text-amber"} />
+          </div>
+          <div className="fab-content">
+            <div className="fab-header">
+              <strong className="fab-title">
+                {earliest_breach_min === 0
+                  ? "Screening Threshold Currently Breached"
+                  : `Projected Threshold Breach in ~${earliest_breach_min} Minutes`}
+              </strong>
+              <span className="fab-time-pill font-mono">
+                {earliest_breach_min === 0 ? "Immediate" : `T+${earliest_breach_min}m`}
+              </span>
+            </div>
+            <p className="fab-message">
+              {alerts[0]?.message || `At current occupancy (${params.occupancy} people) with closed ventilation, CO2 is projected to exceed 800 ppm.`}
+            </p>
+          </div>
+          {!isVentOpen && (
+            <button
+              className="fab-action-btn"
+              onClick={() => updateParam("ventilation_enc", 1)}
+              title="Avert breach by opening room ventilation"
+            >
+              <Zap size={14} /> Open Ventilation Now
+            </button>
+          )}
+        </div>
+      ) : (
+        <div className="forecast-alert-banner stable-airspace">
+          <div className="fab-icon-wrap">
+            <ShieldCheck size={22} className="text-cyan" />
+          </div>
+          <div className="fab-content">
+            <div className="fab-header">
+              <strong className="fab-title">Airspace Trajectory Stable</strong>
+              <span className="fab-time-pill safe font-mono">2h Safe</span>
+            </div>
+            <p className="fab-message">
+              Under current {isVentOpen ? "active ventilation" : "moderate room activity"}, all pollutant concentrations remain below screening thresholds for the next 2 hours.
+            </p>
+          </div>
+        </div>
+      )}
+
+      {/* Trajectory Recharts Chart */}
+      <div className="forecast-chart-wrap">
+        <div className="forecast-chart-legend">
+          <div className="fcl-item">
+            <span className="fcl-line status-quo" style={{ background: isVentOpen ? "var(--cyan)" : "var(--amber)" }} />
+            <span>Projected Proxy (Current: {isVentOpen ? "Ventilated" : "Closed"})</span>
+          </div>
+          {showPreventative && (
+            <div className="fcl-item">
+              <span className="fcl-line preventative" />
+              <span>Averted Proxy (Open Ventilation)</span>
+            </div>
+          )}
+          <div className="fcl-item">
+            <span className="fcl-line threshold" />
+            <span>Elevated Threshold (800 ppm / 100 pts)</span>
+          </div>
+        </div>
+
+        <ResponsiveContainer width="100%" height={210}>
+          <AreaChart data={chartData} margin={{ top: 10, right: 15, left: -20, bottom: 0 }}>
+            <defs>
+              <linearGradient id="forecastAmberGrad" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="5%" stopColor={isVentOpen ? "#2ee6d6" : "#ffb347"} stopOpacity={0.4} />
+                <stop offset="95%" stopColor={isVentOpen ? "#2ee6d6" : "#ffb347"} stopOpacity={0.0} />
+              </linearGradient>
+            </defs>
+            <CartesianGrid stroke="rgba(46, 230, 214, 0.08)" strokeDasharray="3 3" vertical={false} />
+            <XAxis dataKey="time" stroke="#8fa9b8" tick={{ fill: "#8fa9b8", fontSize: 11 }} />
+            <YAxis stroke="#8fa9b8" tick={{ fill: "#8fa9b8", fontSize: 11 }} domain={["auto", "auto"]} />
+            <RechartsTooltip
+              contentStyle={{
+                backgroundColor: "rgba(8, 24, 40, 0.95)",
+                border: "1px solid rgba(46, 230, 214, 0.3)",
+                borderRadius: "12px",
+                color: "#e8f4f8",
+                fontSize: "12px",
+                boxShadow: "0 8px 24px rgba(0,0,0,0.5)",
+              }}
+              formatter={(val, name) => [
+                `${val} pts`,
+                name === "status_quo_proxy" ? "Status Quo Proxy" : "Averted Proxy",
+              ]}
+              labelFormatter={(_, items) => {
+                const p = items?.[0]?.payload;
+                return p ? `Forecast: ${p.time} (${p.time_offset} min) · CO2: ${p.co2_projected} ppm` : "";
+              }}
+            />
+            <ReferenceLine
+              y={100}
+              stroke="#ffb347"
+              strokeDasharray="4 4"
+              label={{ value: "Elevated Proxy (100 pts)", fill: "#ffb347", position: "top", fontSize: 10 }}
+            />
+            <Area
+              type="monotone"
+              dataKey="status_quo_proxy"
+              stroke={isVentOpen ? "#2ee6d6" : "#ffb347"}
+              strokeWidth={2.5}
+              fill="url(#forecastAmberGrad)"
+              name="status_quo_proxy"
+            />
+            {showPreventative && (
+              <Line
+                type="monotone"
+                dataKey="preventative_proxy"
+                stroke="#2ee6d6"
+                strokeWidth={2}
+                strokeDasharray="4 4"
+                dot={{ r: 3, fill: "#2ee6d6" }}
+                name="preventative_proxy"
+              />
+            )}
+          </AreaChart>
+        </ResponsiveContainer>
+      </div>
+
+      {/* Snapshot Projection Tiles */}
+      <div className="forecast-tiles-row">
+        {[
+          { offset: 15, label: "+15m Projection" },
+          { offset: 30, label: "+30m Projection" },
+          { offset: 60, label: "+1h Projection" },
+          { offset: 120, label: "+2h Projection" },
+        ].map(({ offset, label }) => {
+          const pt = baseline_trajectory.find((p) => p.time_offset_min === offset) || {};
+          const isHigh = pt.co2 >= 1000;
+          const isElev = pt.co2 >= 800;
+          const statusCol = isHigh ? "var(--red)" : isElev ? "var(--amber)" : "var(--cyan)";
+
+          return (
+            <div key={offset} className="forecast-mini-tile">
+              <span className="fmt-label">{label}</span>
+              <div className="flex-row items-baseline gap-2">
+                <strong className="fmt-proxy font-mono" style={{ color: statusCol }}>
+                  {pt.predicted_proxy != null ? pt.predicted_proxy.toFixed(1) : "--"}
+                </strong>
+                <small className="fmt-unit">pts</small>
+              </div>
+              <div className="fmt-details">
+                <span>CO2: <strong className="font-mono">{pt.co2 != null ? pt.co2 : "--"} ppm</strong></span>
+                <span>PM2.5: <strong className="font-mono">{pt.pm25 != null ? pt.pm25 : "--"} µg/m³</strong></span>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
+
 export function PredictionsPage() {
   const {
     params,
@@ -332,6 +554,7 @@ export function PredictionsPage() {
     selectedTimestamp,
     prediction,
     modelInfo,
+    forecast,
     error,
     retry,
   } = useAirMind();
@@ -564,6 +787,9 @@ export function PredictionsPage() {
               The target is a derived proxy (not EPA AQI). Model output is updated debounced in real time.
             </p>
           </div>
+
+          {/* Proactive Forecast & Early-Breach Alert Engine */}
+          <ProactiveForecastCard forecast={forecast} params={params} updateParam={updateParam} />
 
           {/* Evaluation Metrics */}
           <div className="panel pred-eval-card">

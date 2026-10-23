@@ -1199,3 +1199,210 @@
   opacity: 0.4;
   cursor: not-allowed;
 }
+
+/* =========================================================================
+   PROACTIVE AIR QUALITY FORECAST ENGINE STYLES
+   ========================================================================= */
+.pred-forecast-card {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  background: linear-gradient(145deg, rgba(8, 24, 40, 0.9) 0%, rgba(10, 30, 50, 0.95) 100%);
+  border: 1px solid rgba(46, 230, 214, 0.25);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
+}
+
+.forecast-toggle-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  color: var(--muted);
+  cursor: pointer;
+  user-select: none;
+}
+.forecast-toggle-label input {
+  accent-color: var(--cyan);
+  width: 14px;
+  height: 14px;
+}
+.forecast-toggle-label:hover {
+  color: var(--text);
+}
+
+/* Proactive Breach & Safety Banner */
+.forecast-alert-banner {
+  border-radius: 12px;
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition: all 0.2s ease;
+}
+.forecast-alert-banner.imminent-breach {
+  background: rgba(255, 179, 71, 0.12);
+  border: 1px solid rgba(255, 179, 71, 0.4);
+  box-shadow: 0 0 16px rgba(255, 179, 71, 0.15);
+}
+.forecast-alert-banner.active-breach {
+  background: rgba(255, 107, 91, 0.14);
+  border: 1px solid rgba(255, 107, 91, 0.5);
+  box-shadow: 0 0 16px rgba(255, 107, 91, 0.2);
+}
+.forecast-alert-banner.stable-airspace {
+  background: rgba(46, 230, 214, 0.08);
+  border: 1px solid rgba(46, 230, 214, 0.25);
+}
+
+.fab-icon-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.fab-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.fab-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.fab-title {
+  font-size: 13px;
+  color: #fff;
+  font-weight: 600;
+}
+.fab-time-pill {
+  font-size: 10px;
+  font-weight: 700;
+  padding: 2px 7px;
+  border-radius: 6px;
+  background: rgba(255, 179, 71, 0.2);
+  border: 1px solid rgba(255, 179, 71, 0.5);
+  color: var(--amber);
+}
+.fab-time-pill.safe {
+  background: rgba(46, 230, 214, 0.15);
+  border-color: rgba(46, 230, 214, 0.4);
+  color: var(--cyan);
+}
+.fab-message {
+  margin: 0;
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.45;
+}
+.fab-action-btn {
+  background: var(--cyan);
+  border: none;
+  color: #050c16;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 8px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.15s ease;
+  white-space: nowrap;
+}
+.fab-action-btn:hover {
+  background: #3fffe8;
+  box-shadow: 0 0 12px rgba(46, 230, 214, 0.5);
+}
+
+/* Forecast Chart Wrap */
+.forecast-chart-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(46, 230, 214, 0.1);
+  border-radius: 12px;
+  padding: 12px 14px 4px;
+}
+.forecast-chart-legend {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px;
+  font-size: 11px;
+  color: var(--muted);
+}
+.fcl-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.fcl-line {
+  width: 14px;
+  height: 3px;
+  border-radius: 2px;
+}
+.fcl-line.status-quo {
+  background: var(--amber);
+}
+.fcl-line.preventative {
+  background: var(--cyan);
+}
+.fcl-line.threshold {
+  background: #ffb347;
+  border-bottom: 1px dashed #ffb347;
+  height: 1px;
+}
+
+/* Forecast Projection Tiles */
+.forecast-tiles-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+@media (max-width: 900px) {
+  .forecast-tiles-row {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+.forecast-mini-tile {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(46, 230, 214, 0.1);
+  border-radius: 10px;
+  padding: 10px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.fmt-label {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--muted);
+  letter-spacing: 0.05em;
+}
+.fmt-proxy {
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1;
+}
+.fmt-unit {
+  font-size: 10px;
+  color: var(--muted);
+}
+.fmt-details {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  border-top: 1px solid rgba(46, 230, 214, 0.08);
+  padding-top: 6px;
+  margin-top: 2px;
+  font-size: 10px;
+  color: var(--muted);
+}
+.fmt-details strong {
+  color: var(--text);
+}

@@ -31,6 +31,7 @@ export function AppProvider({ children }) {
   const [historyRecords, setHistoryRecords] = useState([]);
   const [prediction, setPrediction] = useState(null);
   const [scenarios, setScenarios] = useState(null);
+  const [forecast, setForecast] = useState(null);
   const [selectedSensorId, setSelectedSensorId] = useState("co2");
   const [retryCount, setRetryCount] = useState(0);
   const [requestState, setRequestState] = useState("loading");
@@ -82,13 +83,15 @@ export function AppProvider({ children }) {
       setError("");
       const payload = { ...params, data_source: dataSource };
       try {
-        const [result, options] = await Promise.all([
+        const [result, options, forecastRes] = await Promise.all([
           postJSON("/predict", payload),
           postJSON("/optimize", payload),
+          postJSON("/forecast", { params: payload, horizon_minutes: 120 }),
         ]);
         if (active) {
           setPrediction(result);
           setScenarios(options);
+          setForecast(forecastRes);
           setRequestState("ready");
         }
       } catch (requestError) {
@@ -141,7 +144,7 @@ export function AppProvider({ children }) {
     <AppContext.Provider value={{
       params, setParams, updateParam, resetToInitial, dataSource, setDataSource, selectedTimestamp, setSelectedTimestamp,
       selectHistoricalRecord, loadRandomRecord,
-      health, dataset, screeningThresholds, modelInfo, historyRecords, prediction, scenarios, requestState, error,
+      health, dataset, screeningThresholds, modelInfo, historyRecords, prediction, scenarios, forecast, requestState, error,
       selectedSensorId, setSelectedSensorId, retry,
     }}>
       {children}
